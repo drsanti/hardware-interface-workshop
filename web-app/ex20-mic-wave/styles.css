@@ -227,3 +227,57 @@ code {
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+.meter-wrap {
+  margin: 0.85rem 0;
+  padding: 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #faf7f0;
+}
+
+.meter-label {
+  margin: 0 0 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.meter-track {
+  height: 1.15rem;
+  border-radius: 6px;
+  background: #0f1613;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0f6e56, #3d8f6e);
+  transition: width 60ms linear;
+}
+
+.readout {
+  margin: 0.55rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.wave {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #0f1613;
+}
+
+.wave-meta {
+  margin: 0.4rem 0 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: center;
+}

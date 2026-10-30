@@ -370,7 +370,32 @@ type SfxPlayOpts = {
 ```ts
 await board.writeAcked(MSG_SFX_CMD, encodeSfxPlay(SFX_PRESET.CHIME, { volume: 40 }));
 await board.writeAcked(MSG_SFX_CMD, encodeSfxStop());
-await board.writeAcked(MSG_SFX_PARAM, encodeSfxParam(0xff, 0, 0.5));
+await board.writeAcked(MSG_SFX_PARAM, encodeSfxParam(0xff, 0, 40)); // master %
+```
+
+---
+
+### Wire — Mic (`wire/mic.ts`)
+
+Needs `CAP.MIC` (**es3c28p**). Levels work on USB or BLE; **PCM is USB-only**.
+
+| Constant          | Value  | Direction                              |
+| ----------------- | ------ | -------------------------------------- |
+| `MSG_MIC_CMD`     | `0x86` | Host → board enable / gain / mute / stream |
+| `MSG_AUDIO_LEVEL` | `0x23` | Board → host ~10 Hz while mic on       |
+| `MSG_MIC_PCM`     | `0x24` | Board → host PCM chunks (`stream` on)  |
+
+| Function                         | Description                                      |
+| -------------------------------- | ------------------------------------------------ |
+| `encodeMicCmd(params)`           | Omit fields you do not want to change            |
+| `decodeAudioLevel(payload)`      | `{ rms, peak, frames, clipped }`                 |
+| `decodeMicPcm(payload)`          | `{ seq, samples: Int16Array }`                   |
+| `levelToPercent(amp, floorDb?)`  | Int16 amp → VU % (default floor −48 dBFS)        |
+
+```ts
+await board.writeAcked(MSG_MIC_CMD, encodeMicCmd({ enable: true, gainPct: 70 }));
+await board.writeAcked(MSG_MIC_CMD, encodeMicCmd({ stream: true, enable: true })); // USB
+const pct = levelToPercent(level.rms);
 ```
 
 ---
@@ -380,10 +405,13 @@ await board.writeAcked(MSG_SFX_PARAM, encodeSfxParam(0xff, 0, 0.5));
 | ID     | Name             | Direction    | Codec                                      |
 | ------ | ---------------- | ------------ | ------------------------------------------ |
 | `0x21` | `MSG_LED_STATE`  | board → host | `decodeLedState`                           |
+| `0x23` | `MSG_AUDIO_LEVEL`| board → host | `decodeAudioLevel`                         |
+| `0x24` | `MSG_MIC_PCM`    | board → host | `decodeMicPcm` (USB)                       |
 | `0x27` | `MSG_CMD_ACK`    | board → host | `decodeCmdAck` (also used by `writeAcked`) |
 | `0x28` | `MSG_BOARD_INFO` | board → host | `decodeBoardInfo`                          |
 | `0x84` | `MSG_SFX_CMD`    | host → board | `encodeSfxPlay` / `encodeSfxStop`          |
 | `0x85` | `MSG_SFX_PARAM`  | host → board | `encodeSfxParam`                           |
+| `0x86` | `MSG_MIC_CMD`    | host → board | `encodeMicCmd`                             |
 | `0x8e` | `MSG_LED_FX`     | host → board | `encodeLed*`                               |
 
 ---

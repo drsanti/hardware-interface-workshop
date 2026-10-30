@@ -1,10 +1,17 @@
-# demos — Hardware Interface (React)
+# demos — React track (Vite+)
 
-Browser labs for **Web Serial** and **Web Bluetooth** against
-[`firmware-esp32-s3-dev`](../../firmware-esp32-s3-dev).
+React labs for **Web Serial** and **Web Bluetooth** — the advanced catalog
+after the vanilla track. Same board wire as
+[`firmware-esp32-s3-dev`](../../firmware-esp32-s3-dev); students flash
+[`../firmware-prebuilt/`](../firmware-prebuilt/) (no ESP-IDF).
 
-Sibling projects: [`../web-app/`](../web-app/) (vanilla HTML/CSS/TS) ·
-[`../firmware-prebuilt/`](../firmware-prebuilt/) (flash images).
+| Sibling | Role | Port |
+| ------- | ---- | ---- |
+| [`../web-app/`](../web-app/) | Beginner HTML / CSS / TS + `@sdk` | **5174** |
+| [`../firmware-prebuilt/`](../firmware-prebuilt/) | Flashable images (`es3c28p`, `ws28p`) | — |
+| [Root README](../README.md) | Workshop overview + quick start | — |
+
+---
 
 ## Target boards
 
@@ -13,16 +20,16 @@ Switch the active target in [`src/lib/workshop.ts`](src/lib/workshop.ts)
 (`WORKSHOP_BOARD_ID`) — comment / uncomment like the example switch in
 `App.tsx`. Gate lab UI with `boardHas()`; never assume LED or mic.
 
-| Feature      | `es3c28p` | `ws28p` | Notes                                     |
-| ------------ | --------- | ------- | ----------------------------------------- |
-| RGB LED      | yes       | no      | LED color labs need `es3c28p`             |
-| Microphone   | yes       | no      | Audio over **Web Serial** only            |
-| Motion (IMU) | no        | yes     | Motion labs need `ws28p`                  |
-| Clock (RTC)  | no        | yes     | Keeps time on the board                   |
-| Speaker      | yes       | yes     | Tones / sound effects                     |
-| Touch / keys | yes       | yes     | Input labs                                |
-| Battery      | yes       | yes     | Voltage reading                           |
-| Caps mask    | `0x33`    | `0x3c`  | Used in code to enable the right features |
+| Feature      | `es3c28p` | `ws28p` | Notes                                              |
+| ------------ | --------- | ------- | -------------------------------------------------- |
+| RGB LED      | yes       | no      | LED color labs need `es3c28p`                      |
+| Microphone   | yes       | no      | Levels USB/BLE; **PCM stream is Web Serial only**  |
+| Motion (IMU) | no        | yes     | Motion labs need `ws28p`                           |
+| Clock (RTC)  | no        | yes     | Keeps time on the board                            |
+| Speaker      | yes       | yes     | Tones / sound effects                              |
+| Touch / keys | yes       | yes     | Input labs                                         |
+| Battery      | yes       | yes     | Voltage reading                                    |
+| Caps mask    | `0x33`    | `0x3c`  | Used in code to enable the right features          |
 
 **Prebuilt images** (students can flash without ESP-IDF):
 

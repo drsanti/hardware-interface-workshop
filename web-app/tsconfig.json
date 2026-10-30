@@ -41,6 +41,9 @@
     "ex15-sfx-play/**/*.ts",
     "ex16-sfx-volume/**/*.ts",
     "ex17-sfx-params/**/*.ts",
+    "ex18-mic-hello/**/*.ts",
+    "ex19-mic-vu/**/*.ts",
+    "ex20-mic-wave/**/*.ts",
     "sdk/**/*.ts",
     "vite.config.ts",
     "vite-env.d.ts"

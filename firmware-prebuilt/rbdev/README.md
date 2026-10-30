@@ -1,7 +1,11 @@
-# rbdev (this workshop)
+# rbdev — flash CLI (this workshop)
 
-Host CLI to **flash prebuilt board images** — students do **not** build
-firmware here.
+In-repo host CLI to **flash prebuilt board images**. Students do **not**
+build firmware here. Prefer the wrappers in the parent folder
+(`../rb`, `../rb.cmd`, `../rb.ps1`) so the OS binary is selected for you.
+
+Full flash notes: [`../README.md`](../README.md) · workshop root:
+[`../../README.md`](../../README.md).
 
 Binaries ship under `windows|mac|linux/` in **this folder** (all three OS
 are in the git clone):

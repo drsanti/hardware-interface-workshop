@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex20 · Mic wave</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex20
+      </p>
+
+      <header class="hero">
+        <h1>Mic · wave</h1>
+        <p class="lede">
+          Opt in to <code>MicPcm</code> (<code>0x24</code>) with
+          <code>MicCmd.stream</code> and draw a scrolling scope — <strong>USB only</strong>.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li><code>AudioLevel</code> is ~10 Hz summaries; PCM is the actual samples</li>
+          <li>PCM is heavy — demos keep it on <strong>Web Serial</strong>, not BLE</li>
+          <li>Downsample each chunk into a ring buffer, then stroke a canvas path</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="link-heading">
+        <h2 id="link-heading">USB link</h2>
+        <p class="hint" id="hint">Connect notes are filled in by the script.</p>
+        <p id="banner" class="banner" hidden></p>
+        <div class="toolbar">
+          <button type="button" id="connect-serial" class="btn btn-primary">Connect USB</button>
+          <button type="button" id="disconnect" class="btn" disabled>Disconnect</button>
+        </div>
+        <div class="status-box">
+          <h3>Session</h3>
+          <pre id="status" class="kv">status=…</pre>
+        </div>
+        <div class="info-box">
+          <h3>BoardInfo</h3>
+          <pre id="info" class="kv">Connect USB to hear BoardInfo (0x28)…</pre>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="mic-heading">
+        <h2 id="mic-heading">Stream PCM · <code>0x86</code> / <code>0x24</code></h2>
+        <div class="toolbar">
+          <button type="button" id="stream-on" class="btn btn-primary" disabled>Stream PCM</button>
+          <button type="button" id="stream-off" class="btn" disabled>Stream off</button>
+          <button type="button" id="mic-off" class="btn" disabled>Mic off</button>
+        </div>
+
+        <div class="meter-wrap">
+          <p class="meter-label">rms (from AudioLevel)</p>
+          <div
+            id="rms-track"
+            class="meter-track"
+            role="meter"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            aria-label="RMS level"
+          >
+            <div id="rms-fill" class="meter-fill"></div>
+          </div>
+          <p id="vu-readout" class="readout">Stream off</p>
+        </div>
+
+        <canvas id="wave" class="wave" width="640" height="140" aria-label="Mic PCM waveform"></canvas>
+        <p id="wave-meta" class="wave-meta">display ×—</p>
+
+        <div class="status-box">
+          <h3>Last CmdAck</h3>
+          <pre id="ack" class="kv">—</pre>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

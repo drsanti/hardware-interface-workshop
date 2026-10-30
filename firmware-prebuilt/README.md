@@ -1,15 +1,22 @@
 # Prebuilt firmware
 
-Built from [`firmware-esp32-s3-dev/esp32s3`](../../firmware-esp32-s3-dev/esp32s3)
-(app target `robotos_serial_bridge` — firmware binary name only; this
-workshop does not use the `robotos` host SDK).
+Flashable board images for the
+[hardware-interface-workshop](../README.md) — **no ESP-IDF required** for
+students. Built from
+[`firmware-esp32-s3-dev/esp32s3`](../../firmware-esp32-s3-dev/esp32s3)
+(app target `robotos_serial_bridge` — binary name only; this workshop does
+**not** use the `robotos` host SDK).
 
 | Folder                 | `-DBOARD=` | Caps focus                                    |
 | ---------------------- | ---------- | --------------------------------------------- |
 | [`es3c28p/`](es3c28p/) | `es3c28p`  | RGB LED + mic (`caps=0x33`, default)          |
 | [`ws28p/`](ws28p/)     | `ws28p`    | IMU + RTC (`caps=0x3c`; **no** RGB LED / mic) |
 
-Match the flash folder to `WORKSHOP_BOARD_ID` in `src/lib/workshop.ts`.
+| Consumer | How to pick the board |
+| -------- | --------------------- |
+| React demos | `WORKSHOP_BOARD_ID` in [`../demos/src/lib/workshop.ts`](../demos/src/lib/workshop.ts) |
+| Vanilla labs | Lab README / `CAP.*` gates (LED+mic → `es3c28p`) |
+| Flash CLI | `.\rb config --board es3c28p` or `ws28p` |
 
 **Co-development:** the firmware tree is fair game while the workshop is
 built — improve handlers, BLE/serial paths, or docs so labs have what they

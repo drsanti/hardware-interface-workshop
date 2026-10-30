@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex05 · SVG draw</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      Static chrome in HTML. Polyline strokes are created in main.ts.
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex05
+      </p>
+
+      <header class="hero">
+        <h1>SVG draw</h1>
+        <p class="lede">
+          Draw with the pointer into an
+          <code>&lt;svg&gt;</code> — strokes are DOM nodes (<code>createElementNS</code> +
+          <code>polyline</code>).
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>SVG uses the XML namespace — always <code>createElementNS</code></li>
+          <li>Pointer → points → <code>points="x,y x,y …"</code> on a polyline</li>
+          <li>Next lab (ex06) paints pixels on a <code>&lt;canvas&gt;</code> instead</li>
+          <li>Read <code>main.ts</code> — <code>ui.ts</code> only paints the page</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="pad-heading">
+        <h2 id="pad-heading">Sketchpad (SVG)</h2>
+        <p class="hint">
+          Drag on the pad. Each stroke is a &lt;polyline&gt; you can select in DevTools.
+        </p>
+
+        <div class="toolbar">
+          <button
+            type="button"
+            class="color-swatch"
+            data-color="#7dd3a7"
+            style="background: #7dd3a7"
+            aria-label="Stroke color #7dd3a7"
+            aria-pressed="true"
+          ></button>
+          <button
+            type="button"
+            class="color-swatch"
+            data-color="#f0c14a"
+            style="background: #f0c14a"
+            aria-label="Stroke color #f0c14a"
+            aria-pressed="false"
+          ></button>
+          <button
+            type="button"
+            class="color-swatch"
+            data-color="#7eb6ff"
+            style="background: #7eb6ff"
+            aria-label="Stroke color #7eb6ff"
+            aria-pressed="false"
+          ></button>
+          <button
+            type="button"
+            class="color-swatch"
+            data-color="#f07178"
+            style="background: #f07178"
+            aria-label="Stroke color #f07178"
+            aria-pressed="false"
+          ></button>
+          <button type="button" id="clear" class="btn">Clear</button>
+        </div>
+
+        <div class="stage-wrap">
+          <svg
+            id="pad"
+            class="stage-svg"
+            viewBox="0 0 640 260"
+            preserveAspectRatio="none"
+            role="img"
+            aria-label="SVG drawing surface"
+          ></svg>
+        </div>
+
+        <p id="readout" class="readout"></p>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

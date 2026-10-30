@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex09 · Web video camera</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      UI in HTML. getUserMedia / srcObject logic in main.ts.
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex09
+      </p>
+
+      <header class="hero">
+        <h1>Web video camera</h1>
+        <p class="lede">
+          Show a live camera preview with
+          <code>getUserMedia</code> and a <code>&lt;video&gt;</code> element
+          (<code>srcObject</code>).
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>Same permission pattern as the mic lab — start from a click</li>
+          <li><code>video.srcObject = stream</code> (not a URL string)</li>
+          <li>Stop tracks when done so the camera light turns off</li>
+          <li>Read <code>main.ts</code> — <code>ui.ts</code> only paints the page</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="cam-heading">
+        <h2 id="cam-heading">Camera preview</h2>
+        <p class="hint">
+          Click Start camera and allow access. The preview is mirrored (CSS scaleX).
+        </p>
+
+        <div class="toolbar">
+          <button type="button" id="start" class="btn btn-primary">Start camera</button>
+          <button type="button" id="stop" class="btn" disabled>Stop</button>
+        </div>
+
+        <div id="preview-wrap" class="preview-wrap">
+          <p class="preview-placeholder">camera off</p>
+          <video
+            id="preview"
+            class="preview-video"
+            autoplay
+            muted
+            playsinline
+            aria-label="Live camera preview"
+          ></video>
+        </div>
+
+        <p id="readout" class="readout"></p>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

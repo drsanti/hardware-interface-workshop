@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex00 · Hello, page</title>
+    <!-- CSS = how it looks -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      HTML = structure (what is on the page).
+      Read top → bottom. Tags nest: parent contains children.
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex00
+      </p>
+
+      <header class="hero">
+        <h1>Hello, page</h1>
+        <p class="lede">
+          Three files work together:
+          <strong>HTML</strong> (structure), <strong>CSS</strong> (look),
+          <strong>TypeScript</strong> (behavior).
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="parts-heading">
+        <h2 id="parts-heading">The three parts</h2>
+        <dl class="parts">
+          <div>
+            <dt>HTML</dt>
+            <dd>This document — headings, paragraphs, buttons.</dd>
+          </div>
+          <div>
+            <dt>CSS</dt>
+            <dd><code>styles.css</code> — colors, spacing, layout.</dd>
+          </div>
+          <div>
+            <dt>TypeScript</dt>
+            <dd><code>main.ts</code> — Vite+ compiles it; listens for clicks.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="card" aria-labelledby="try-heading">
+        <h2 id="try-heading">Try it</h2>
+        <p class="hint">
+          Click the button. TypeScript finds the button by
+          <code>id</code>, then updates the counter text.
+        </p>
+
+        <!-- ids are hooks for TypeScript (and for accessibility labels) -->
+        <div class="demo">
+          <p class="counter-line">
+            Clicks:
+            <span id="count">0</span>
+          </p>
+          <button id="bump" type="button">Click me</button>
+        </div>
+      </section>
+
+      <section class="card muted" aria-labelledby="next-heading">
+        <h2 id="next-heading">What to edit</h2>
+        <ol>
+          <li>Change the <code>&lt;h1&gt;</code> text in this HTML file.</li>
+          <li>Change <code>--accent</code> in <code>styles.css</code>.</li>
+          <li>Change the click step in <code>main.ts</code> (e.g. +2).</li>
+          <li>Save — Vite+ hot-updates most CSS/TS changes.</li>
+        </ol>
+      </section>
+    </main>
+
+    <!-- Behavior. Vite+ serves .ts via type="module". -->
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

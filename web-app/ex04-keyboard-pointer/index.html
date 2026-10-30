@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex04 · Keyboard + pointer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      UI in HTML. Pointer/key logic in main.ts.
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex04
+      </p>
+
+      <header class="hero">
+        <h1>Keyboard + pointer</h1>
+        <p class="lede">
+          Click the stage to place dots. Focus it, then use arrow keys —
+          <code>keydown</code> and <code>pointerdown</code>.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>
+            <code>pointerdown</code> — finger / mouse / pen; use <code>offsetX</code> /
+            <code>offsetY</code> for stage-local coords
+          </li>
+          <li><code>keydown</code> — arrows nudge the cursor; Escape clears; Enter drops a mark</li>
+          <li>Stage needs <code>tabindex="0"</code> so it can receive keyboard focus</li>
+          <li>Read <code>main.ts</code> — <code>ui.ts</code> only paints the page</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="stage-heading">
+        <h2 id="stage-heading">Stage</h2>
+        <p class="hint">Click the stage (focuses it). Then try arrows, Enter, and Escape.</p>
+
+        <div class="toolbar">
+          <button type="button" id="clear" class="btn">Clear marks</button>
+        </div>
+
+        <div
+          id="stage"
+          class="stage"
+          tabindex="0"
+          role="application"
+          aria-label="Drawing stage. Click to place marks. Arrow keys move cursor."
+        >
+          <div id="cursor" class="cursor"></div>
+        </div>
+
+        <div id="readout" class="readout"></div>
+
+        <h2 class="section-title">Event log</h2>
+        <ul id="event-log" class="event-log"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

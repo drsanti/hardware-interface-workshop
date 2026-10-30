@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex07 · Web Audio mic</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      UI in HTML. Mic / AnalyserNode logic in main.ts.
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex07
+      </p>
+
+      <header class="hero">
+        <h1>Web Audio mic</h1>
+        <p class="lede">
+          Capture the microphone with
+          <code>getUserMedia</code>, then measure level with an <code>AnalyserNode</code>.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>Must start from a click (permission + AudioContext policy)</li>
+          <li><code>MediaStream</code> → <code>createMediaStreamSource</code> → analyser</li>
+          <li>Next lab plays sound out of the speakers</li>
+          <li>Read <code>main.ts</code> — <code>ui.ts</code> only paints the page</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="mic-heading">
+        <h2 id="mic-heading">Microphone level</h2>
+        <p class="hint">
+          Click Start mic and allow access. Speak or tap the table — the bar should move.
+        </p>
+
+        <div class="toolbar">
+          <button type="button" id="start" class="btn btn-primary">Start mic</button>
+          <button type="button" id="stop" class="btn" disabled>Stop</button>
+        </div>
+
+        <div class="meter-wrap">
+          <p class="meter-label">level</p>
+          <div
+            id="meter-track"
+            class="meter-track"
+            role="meter"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            aria-label="Microphone level"
+          >
+            <div id="meter-fill" class="meter-fill"></div>
+          </div>
+        </div>
+
+        <p id="readout" class="readout"></p>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

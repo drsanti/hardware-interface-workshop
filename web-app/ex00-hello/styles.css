@@ -1,0 +1,159 @@
+/* CSS = look and layout. Selectors match HTML tags / classes / ids. */
+
+:root {
+  color-scheme: light;
+  --bg: #f3efe6;
+  --ink: #1c1914;
+  --muted: #5c564c;
+  --line: #d4cdc0;
+  --card: #fffdf8;
+  --accent: #0f6e56;
+  --accent-ink: #fffdf8;
+  --accent-soft: #d8f0e8;
+  --mono: "Cascadia Code", "Segoe UI Mono", "Consolas", monospace;
+  --sans: "Segoe UI", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: radial-gradient(ellipse 70% 45% at 0% 0%, #e7f2ec 0%, transparent 55%), var(--bg);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--accent);
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--accent-soft);
+}
+
+.page {
+  width: min(36rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 3.5rem;
+}
+
+.crumb {
+  margin: 0 0 1.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  margin: 0;
+  color: var(--muted);
+}
+
+.card {
+  margin-top: 1rem;
+  padding: 1.15rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.card h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+}
+
+.card.muted {
+  color: var(--muted);
+}
+
+.card.muted ol {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.card.muted li + li {
+  margin-top: 0.35rem;
+}
+
+.parts {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.parts dt {
+  font-weight: 650;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.parts dd {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+}
+
+.hint {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.25rem;
+}
+
+.counter-line {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+#count {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+#bump {
+  appearance: none;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--accent-ink);
+  background: var(--accent);
+  cursor: pointer;
+}
+
+#bump:hover {
+  filter: brightness(1.06);
+}
+
+#bump:active {
+  transform: translateY(1px);
+}
+
+#bump:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

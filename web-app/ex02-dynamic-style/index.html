@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex02 · Dynamic style</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      #stage is an empty box. main.ts creates shapes and drives
+      element.style.* every tick via setInterval.
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex02
+      </p>
+
+      <header class="hero">
+        <h1>Dynamic style</h1>
+        <p class="lede">
+          Compute numbers on a timer, then write them into
+          <code>element.style</code> — color, size, position, rotation.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <p class="hint">
+          CSS files set the default look. TypeScript can override properties live:
+          <code>el.style.transform = …</code>, <code>el.style.backgroundColor = …</code>.
+        </p>
+        <pre class="snippet" aria-hidden="true">
+setInterval(() => {
+  t += 0.05;
+  box.style.left = `${120 + Math.sin(t) * 80}px`;
+  box.style.transform = `rotate(${t * 40}deg)`;
+}, 32);</pre>
+      </section>
+
+      <div id="mount" class="card"></div>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

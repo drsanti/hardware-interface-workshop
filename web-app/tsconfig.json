@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "isolatedModules": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "paths": {
+      "@sdk": ["./sdk/index.ts"],
+      "@sdk/*": ["./sdk/*"]
+    }
+  },
+  "include": [
+    "ex00-hello/**/*.ts",
+    "ex01-dynamic-elements/**/*.ts",
+    "ex02-dynamic-style/**/*.ts",
+    "ex03-form-events/**/*.ts",
+    "ex04-keyboard-pointer/**/*.ts",
+    "ex05-svg-draw/**/*.ts",
+    "ex06-canvas-draw/**/*.ts",
+    "ex07-web-audio-mic/**/*.ts",
+    "ex08-web-audio-speaker/**/*.ts",
+    "ex09-web-video-camera/**/*.ts",
+    "ex10-web-serial/**/*.ts",
+    "ex11-web-bluetooth/**/*.ts",
+    "ex12-led-writeacked/**/*.ts",
+    "sdk/**/*.ts",
+    "vite.config.ts",
+    "vite-env.d.ts"
+  ]
+}

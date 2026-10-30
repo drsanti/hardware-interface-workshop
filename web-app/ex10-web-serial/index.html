@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex10 · Web Serial</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      UI lives here. Serial logic lives in main.ts (via ui.ts helpers).
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex10
+      </p>
+
+      <header class="hero">
+        <h1>Web Serial</h1>
+        <p class="lede">
+          Open a USB link with
+          <code>BoardSession.connectSerial()</code>
+          (browser port picker), then show
+          <code>BoardInfo</code> from the wire.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>Chrome / Edge · <code>localhost</code> or HTTPS · plug in the board</li>
+          <li>Connect must run from a <strong>click</strong> (user gesture)</li>
+          <li>After open, wait ~2.5&nbsp;s settle — then <code>ready</code> and BoardInfo</li>
+          <li>
+            Read <code>main.ts</code> for the serial path — <code>ui.ts</code> only paints the page
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="link-heading">
+        <h2 id="link-heading">USB link</h2>
+        <p class="hint" id="hint">Baud and settle notes are filled in by the script.</p>
+
+        <p id="banner" class="banner" hidden></p>
+
+        <div class="toolbar">
+          <button type="button" id="connect" class="btn btn-primary">Connect USB</button>
+          <button type="button" id="disconnect" class="btn" disabled>Disconnect</button>
+        </div>
+
+        <div class="status-box">
+          <h3>Session</h3>
+          <pre id="status" class="kv">status=…</pre>
+        </div>
+
+        <div class="info-box">
+          <h3>BoardInfo</h3>
+          <pre id="info" class="kv">Waiting for BoardInfo frame (0x28)…</pre>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

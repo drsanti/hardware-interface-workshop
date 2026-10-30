@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla track · Hardware Interface Workshop</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="eyebrow">hardware-interface-workshop / web-app</p>
+        <h1>Vanilla track</h1>
+        <p class="lede">
+          Start here if you are new to the browser: plain
+          <strong>HTML</strong>, <strong>CSS</strong>, and <strong>TypeScript</strong> — no React
+          yet.
+        </p>
+      </header>
+
+      <section class="panel" aria-labelledby="how-heading">
+        <h2 id="how-heading">How to run</h2>
+        <ol class="steps">
+          <li>
+            <code>cd web-app</code>
+          </li>
+          <li>
+            <code>vp install</code>
+            (first time)
+          </li>
+          <li>
+            <code>vp dev</code>
+            →
+            <a href="/"><code>http://localhost:5174/</code></a>
+          </li>
+          <li>Pick one exercise below.</li>
+        </ol>
+        <p class="note">
+          Do not open HTML via <code>file://</code>. React board demos:
+          <code>cd ../demos</code> then <code>vp dev</code> (port 5173).
+        </p>
+      </section>
+
+      <section class="panel" aria-labelledby="ex-heading">
+        <h2 id="ex-heading">Exercises</h2>
+        <ul class="ex-list">
+          <li>
+            <a class="ex-link" href="/ex00-hello/">
+              <span class="ex-id">ex00</span>
+              <span class="ex-title">Hello, page</span>
+              <span class="ex-blurb">HTML structure · CSS look · TS click</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex01-dynamic-elements/">
+              <span class="ex-id">ex01</span>
+              <span class="ex-title">Dynamic elements</span>
+              <span class="ex-blurb">createElement · append · remove</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex02-dynamic-style/">
+              <span class="ex-id">ex02</span>
+              <span class="ex-title">Dynamic style</span>
+              <span class="ex-blurb">setInterval · element.style</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex03-form-events/">
+              <span class="ex-id">ex03</span>
+              <span class="ex-title">Form events</span>
+              <span class="ex-blurb">input · change · submit</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex04-keyboard-pointer/">
+              <span class="ex-id">ex04</span>
+              <span class="ex-title">Keyboard + pointer</span>
+              <span class="ex-blurb">keydown · pointerdown</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex05-svg-draw/">
+              <span class="ex-id">ex05</span>
+              <span class="ex-title">SVG draw</span>
+              <span class="ex-blurb">createElementNS · polyline</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex06-canvas-draw/">
+              <span class="ex-id">ex06</span>
+              <span class="ex-title">Canvas draw</span>
+              <span class="ex-blurb">getContext · lineTo · stroke</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex07-web-audio-mic/">
+              <span class="ex-id">ex07</span>
+              <span class="ex-title">Web Audio mic</span>
+              <span class="ex-blurb">getUserMedia · AnalyserNode</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex08-web-audio-speaker/">
+              <span class="ex-id">ex08</span>
+              <span class="ex-title">Web Audio speaker</span>
+              <span class="ex-blurb">OscillatorNode · destination</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex09-web-video-camera/">
+              <span class="ex-id">ex09</span>
+              <span class="ex-title">Web video camera</span>
+              <span class="ex-blurb">getUserMedia · video.srcObject</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex10-web-serial/">
+              <span class="ex-id">ex10</span>
+              <span class="ex-title">Web Serial</span>
+              <span class="ex-blurb">BoardSession · connectSerial · BoardInfo</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex11-web-bluetooth/">
+              <span class="ex-id">ex11</span>
+              <span class="ex-title">Web Bluetooth</span>
+              <span class="ex-blurb">BoardSession · connectBle · BoardInfo</span>
+            </a>
+          </li>
+          <li>
+            <a class="ex-link" href="/ex12-led-writeacked/">
+              <span class="ex-id">ex12</span>
+              <span class="ex-title">LED writeAcked</span>
+              <span class="ex-blurb">Serial or BLE · LedFx · CmdAck</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

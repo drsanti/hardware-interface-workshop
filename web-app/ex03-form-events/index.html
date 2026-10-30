@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex03 · Form events</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      UI in HTML. Event logic in main.ts (via ui.ts helpers).
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex03
+      </p>
+
+      <header class="hero">
+        <h1>Form events</h1>
+        <p class="lede">
+          Listen for <code>input</code> and <code>change</code>, then handle
+          <code>submit</code> with <code>preventDefault</code> so the page does not reload.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li><code>input</code> — every keystroke / slider move (live preview)</li>
+          <li><code>change</code> — when the value is “committed” (blur, select, checkbox)</li>
+          <li>
+            <code>submit</code> + <code>preventDefault()</code> — stay on this page and handle data
+            in TypeScript
+          </li>
+          <li>Read <code>main.ts</code> — <code>ui.ts</code> only paints the page</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="badge-heading">
+        <h2 id="badge-heading">Name badge</h2>
+
+        <form id="badge-form" novalidate>
+          <div class="field">
+            <label for="name">Display name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="off"
+              placeholder="Type here…"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="role">Role</label>
+            <select id="role" name="role">
+              <option value="student">Student</option>
+              <option value="ta">TA</option>
+              <option value="instructor">Instructor</option>
+            </select>
+          </div>
+
+          <label class="field-row">
+            <input id="notify" name="notify" type="checkbox" />
+            <span>Email me workshop updates</span>
+          </label>
+
+          <p id="preview" class="preview preview-empty">Preview updates on every input…</p>
+
+          <button type="submit" class="btn">Save badge</button>
+        </form>
+
+        <p id="status" class="status">Waiting for input…</p>
+
+        <h2 class="section-title">Saved</h2>
+        <ul id="saved-list" class="saved-list"></ul>
+
+        <h2 class="section-title">Event log</h2>
+        <ul id="event-log" class="event-log" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

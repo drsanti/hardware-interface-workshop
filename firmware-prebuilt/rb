@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Wrapper → firmware-prebuilt/rbdev/<os>/rbdev
+set -euo pipefail
+HERE="$(cd "$(dirname "$0")" && pwd)"
+case "$(uname -s)" in
+  Darwin) EXE="$HERE/rbdev/mac/rbdev" ;;
+  Linux)  EXE="$HERE/rbdev/linux/rbdev" ;;
+  *)
+    echo "unsupported host $(uname -s) — use rbdev/windows/rbdev.exe on Windows" >&2
+    exit 1
+    ;;
+esac
+if [[ ! -x "$EXE" && -f "$EXE" ]]; then chmod +x "$EXE"; fi
+if [[ ! -f "$EXE" ]]; then
+  echo "missing $EXE — ask instructor or rebuild rbdev" >&2
+  exit 1
+fi
+exec "$EXE" "$@"

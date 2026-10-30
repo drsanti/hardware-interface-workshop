@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex11 · Web Bluetooth</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      UI lives here. BLE logic lives in main.ts (via ui.ts helpers).
+      Same wire frames as USB — only the pipe changes.
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex11
+      </p>
+
+      <header class="hero">
+        <h1>Web Bluetooth</h1>
+        <p class="lede">
+          Open a wireless link with
+          <code>BoardSession.connectBle()</code>
+          (browser device picker), then show
+          <code>BoardInfo</code> — same frames as USB Serial.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>Chrome / Edge · <code>localhost</code> or HTTPS · board advertising BLE</li>
+          <li>Connect must run from a <strong>click</strong> (user gesture)</li>
+          <li>Same COBS / BoardInfo as ex10 — transport is <code>"ble"</code></li>
+          <li>
+            Read <code>main.ts</code> for the BLE path — <code>ui.ts</code> only paints the page
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="link-heading">
+        <h2 id="link-heading">Bluetooth link</h2>
+        <p class="hint" id="hint">GATT / settle notes are filled in by the script.</p>
+
+        <p id="banner" class="banner" hidden></p>
+
+        <div class="toolbar">
+          <button type="button" id="connect" class="btn btn-primary">Connect BLE</button>
+          <button type="button" id="disconnect" class="btn" disabled>Disconnect</button>
+        </div>
+
+        <div class="status-box">
+          <h3>Session</h3>
+          <pre id="status" class="kv">status=…</pre>
+        </div>
+
+        <div class="info-box">
+          <h3>BoardInfo</h3>
+          <pre id="info" class="kv">Waiting for BoardInfo frame (0x28)…</pre>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

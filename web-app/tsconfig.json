@@ -36,6 +36,11 @@
     "ex10-web-serial/**/*.ts",
     "ex11-web-bluetooth/**/*.ts",
     "ex12-led-writeacked/**/*.ts",
+    "ex13-wave-cmd/**/*.ts",
+    "ex14-led-sliders/**/*.ts",
+    "ex15-sfx-play/**/*.ts",
+    "ex16-sfx-volume/**/*.ts",
+    "ex17-sfx-params/**/*.ts",
     "sdk/**/*.ts",
     "vite.config.ts",
     "vite-env.d.ts"

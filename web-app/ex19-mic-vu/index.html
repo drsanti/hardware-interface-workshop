@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex19 · Mic VU</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex19
+      </p>
+
+      <header class="hero">
+        <h1>Mic · VU</h1>
+        <p class="lede">
+          Map <code>AudioLevel</code> to a bar with <code>levelToPercent</code>, then
+          tweak <code>gain_pct</code> / <code>mute</code> on <code>MicCmd</code>.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>Raw rms/peak are int16 amps — speech sits low on a linear meter</li>
+          <li><code>levelToPercent</code> uses a dBFS floor (~−48 dB) so talk fills the bar</li>
+          <li>Gain / mute are more <code>MicCmd</code> fields — same message as enable</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="link-heading">
+        <h2 id="link-heading">Link</h2>
+        <p class="hint" id="hint">Connect notes are filled in by the script.</p>
+        <p id="banner" class="banner" hidden></p>
+        <div class="toolbar">
+          <button type="button" id="connect-serial" class="btn btn-primary">Connect USB</button>
+          <button type="button" id="connect-ble" class="btn btn-primary">Connect BLE</button>
+          <button type="button" id="disconnect" class="btn" disabled>Disconnect</button>
+        </div>
+        <div class="status-box">
+          <h3>Session</h3>
+          <pre id="status" class="kv">status=…</pre>
+        </div>
+        <div class="info-box">
+          <h3>BoardInfo</h3>
+          <pre id="info" class="kv">Connect to hear BoardInfo (0x28)…</pre>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="mic-heading">
+        <h2 id="mic-heading">VU · gain · mute</h2>
+        <div class="toolbar">
+          <button type="button" id="mic-on" class="btn btn-primary" disabled>Mic on</button>
+          <button type="button" id="mic-off" class="btn" disabled>Mic off</button>
+          <button type="button" id="mute" class="btn" disabled>Mute</button>
+        </div>
+
+        <div class="meter-wrap">
+          <p class="meter-label">rms</p>
+          <div
+            id="rms-track"
+            class="meter-track"
+            role="meter"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            aria-label="RMS level"
+          >
+            <div id="rms-fill" class="meter-fill"></div>
+          </div>
+          <p class="meter-label peak-label">peak</p>
+          <div id="peak-track" class="peak-track" aria-hidden="true">
+            <div id="peak-mark" class="peak-mark"></div>
+          </div>
+          <p id="vu-readout" class="readout">Mic off</p>
+        </div>
+
+        <div class="sliders">
+          <div class="slider-row">
+            <label for="gain">Gain %</label>
+            <input id="gain" type="range" min="0" max="100" step="1" value="70" disabled />
+            <button type="button" id="gain-apply" class="btn btn-sm" disabled>70%</button>
+          </div>
+        </div>
+
+        <div class="status-box">
+          <h3>Last CmdAck</h3>
+          <pre id="ack" class="kv">—</pre>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

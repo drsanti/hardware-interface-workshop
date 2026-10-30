@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex13 · WaveCmd</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      UI lives here. Link + WaveCmd logic lives in main.ts.
+      Choose USB or BLE — WaveCmd (0x83) drives R/G/B oscillators into the LED.
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex13
+      </p>
+
+      <header class="hero">
+        <h1>LED · WaveCmd</h1>
+        <p class="lede">
+          Pick <strong>USB</strong> or <strong>Bluetooth</strong>, then drive the RGB LED with
+          per-channel oscillators via <code>writeAcked(MSG_CMD_WAVE, …)</code>.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>Same dual-transport session as ex12 (LedFx)</li>
+          <li><code>WaveCmd</code> (<code>0x83</code>) — R / G / B wave modules</li>
+          <li>Shapes: sin / square / triangle / sawtooth</li>
+          <li>
+            Lab sends <code>LedFx</code> off first so a prior solid/blink hold does not block waves
+          </li>
+          <li>Needs <code>CAP.LED</code> (es3c28p)</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="link-heading">
+        <h2 id="link-heading">Link</h2>
+        <p class="hint" id="hint">Connect notes are filled in by the script.</p>
+
+        <p id="banner" class="banner" hidden></p>
+
+        <div class="toolbar">
+          <button type="button" id="connect-serial" class="btn btn-primary">Connect USB</button>
+          <button type="button" id="connect-ble" class="btn btn-primary">Connect BLE</button>
+          <button type="button" id="disconnect" class="btn" disabled>Disconnect</button>
+        </div>
+
+        <div class="status-box">
+          <h3>Session</h3>
+          <pre id="status" class="kv">status=…</pre>
+        </div>
+
+        <div class="info-box">
+          <h3>BoardInfo</h3>
+          <pre id="info" class="kv">Connect to hear BoardInfo (0x28)…</pre>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="wave-heading">
+        <h2 id="wave-heading">WaveCmd · <code>0x83</code></h2>
+        <p class="hint">
+          Enabled when <code>ready</code> and <code>CAP.LED</code>. Sin color wheel matches the
+          firmware boot demo (three sines, harmonic freqs, 120° phase).
+        </p>
+
+        <div class="toolbar">
+          <button type="button" id="wave-sin" class="btn" disabled>Sin color wheel</button>
+          <button type="button" id="wave-square" class="btn" disabled>Square</button>
+          <button type="button" id="wave-triangle" class="btn" disabled>Triangle</button>
+          <button type="button" id="wave-saw" class="btn" disabled>Sawtooth</button>
+          <button type="button" id="wave-stop" class="btn" disabled>Stop waves</button>
+        </div>
+
+        <div class="status-box">
+          <h3>Last CmdAck</h3>
+          <pre id="ack" class="kv">—</pre>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

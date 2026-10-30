@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex16 · SFX volume</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex16
+      </p>
+
+      <header class="hero">
+        <h1>SFX · volume &amp; loops</h1>
+        <p class="lede">
+          Same <code>SfxCmd</code> (<code>0x84</code>) as ex15, but set
+          <strong>volume</strong> and <strong>loops</strong> on the play message before you send it.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li><code>volume</code> 1–100 applies to the <em>next</em> play (0 = leave board unchanged)</li>
+          <li><code>loops</code> 0 = board default; &gt;0 = repeat that many times</li>
+          <li>Not a live knob — for live DSP see ex17 (<code>SfxParam</code>)</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="link-heading">
+        <h2 id="link-heading">Link</h2>
+        <p class="hint" id="hint">Connect notes are filled in by the script.</p>
+        <p id="banner" class="banner" hidden></p>
+        <div class="toolbar">
+          <button type="button" id="connect-serial" class="btn btn-primary">Connect USB</button>
+          <button type="button" id="connect-ble" class="btn btn-primary">Connect BLE</button>
+          <button type="button" id="disconnect" class="btn" disabled>Disconnect</button>
+        </div>
+        <div class="status-box">
+          <h3>Session</h3>
+          <pre id="status" class="kv">status=…</pre>
+        </div>
+        <div class="info-box">
+          <h3>BoardInfo</h3>
+          <pre id="info" class="kv">Connect to hear BoardInfo (0x28)…</pre>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="sfx-heading">
+        <h2 id="sfx-heading">Play options · <code>0x84</code></h2>
+        <div class="sliders">
+          <div class="slider-row">
+            <label for="volume">Volume</label>
+            <input id="volume" type="range" min="1" max="100" step="1" value="30" disabled />
+            <span id="volume-val" class="val">30</span>
+          </div>
+          <div class="slider-row">
+            <label for="loops">Loops</label>
+            <input id="loops" type="range" min="0" max="8" step="1" value="1" disabled />
+            <span id="loops-val" class="val">1</span>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button type="button" id="sfx-beep" class="btn" disabled>Beep</button>
+          <button type="button" id="sfx-chime" class="btn" disabled>Chime</button>
+          <button type="button" id="sfx-alarm" class="btn" disabled>Alarm</button>
+          <button type="button" id="sfx-stop" class="btn" disabled>Stop</button>
+        </div>
+        <div class="status-box">
+          <h3>Last CmdAck</h3>
+          <pre id="ack" class="kv">—</pre>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

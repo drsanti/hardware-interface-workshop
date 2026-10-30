@@ -3,7 +3,8 @@
 Host CLI to **flash prebuilt board images** — students do **not** build
 firmware here.
 
-Binaries ship under `windows|mac|linux/` in **this folder**:
+Binaries ship under `windows|mac|linux/` in **this folder** (all three OS
+are in the git clone):
 
 | Your OS | Binary |
 |---------|--------|
@@ -11,7 +12,8 @@ Binaries ship under `windows|mac|linux/` in **this folder**:
 | macOS arm64 | `firmware-prebuilt/rbdev/mac/rbdev` |
 | Linux x64 | `firmware-prebuilt/rbdev/linux/rbdev` |
 
-Do **not** permanently add this folder to `PATH`.
+Do **not** permanently add this folder to `PATH`. On macOS, first launch
+may need **right-click → Open** (Gatekeeper) until notarization.
 
 ---
 
@@ -57,7 +59,7 @@ From the `rbdev` tool repo (workshops as siblings):
 ```
 
 ```bash
-./scripts/install-to-workshops.sh
+./scripts/install-to-workshops.sh   # host OS only; Linux from Mac → cross
 ```
 
 Do not update only one workshop. Checklist:

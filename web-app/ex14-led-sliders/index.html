@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex14 · LED sliders</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!--
+      UI lives here. Link + slider → LedFx solid logic in main.ts.
+      R/G/B + intensity; live writeFrame + Apply writeAcked.
+    -->
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex14
+      </p>
+
+      <header class="hero">
+        <h1>LED · sliders</h1>
+        <p class="lede">
+          Pick <strong>USB</strong> or <strong>Bluetooth</strong>, then dial R / G / B and
+          intensity. Live updates use <code>writeFrame</code>; <strong>Apply</strong> uses
+          <code>writeAcked</code>.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>Same dual-transport session as ex12 / ex13</li>
+          <li>
+            Solid color = <code>LedFx</code> <code>SOLID</code> with RGB scaled by intensity
+            (firmware ignores <code>intensity</code> on solid — we scale in the browser)
+          </li>
+          <li><code>input</code> on ranges → preview + throttled live send (~80&nbsp;ms)</li>
+          <li><strong>Apply</strong> waits for <code>CmdAck</code>; good check that the board heard you</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="link-heading">
+        <h2 id="link-heading">Link</h2>
+        <p class="hint" id="hint">Connect notes are filled in by the script.</p>
+
+        <p id="banner" class="banner" hidden></p>
+
+        <div class="toolbar">
+          <button type="button" id="connect-serial" class="btn btn-primary">Connect USB</button>
+          <button type="button" id="connect-ble" class="btn btn-primary">Connect BLE</button>
+          <button type="button" id="disconnect" class="btn" disabled>Disconnect</button>
+        </div>
+
+        <div class="status-box">
+          <h3>Session</h3>
+          <pre id="status" class="kv">status=…</pre>
+        </div>
+
+        <div class="info-box">
+          <h3>BoardInfo</h3>
+          <pre id="info" class="kv">Connect to hear BoardInfo (0x28)…</pre>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="mix-heading">
+        <h2 id="mix-heading">Color mix · <code>0x8e</code> solid</h2>
+        <p class="hint">Needs <code>ready</code> + <code>CAP.LED</code>. Drag sliders with Live on for continuous updates.</p>
+
+        <div class="preview-row">
+          <span id="swatch" class="swatch" aria-hidden="true"></span>
+          <pre id="preview" class="preview-meta">r=0 g=0 b=0 · out=0,0,0</pre>
+        </div>
+
+        <div class="sliders">
+          <div class="slider-row">
+            <label for="r">Red</label>
+            <input id="r" type="range" min="0" max="255" step="1" value="220" disabled />
+            <span id="r-val" class="val">220</span>
+          </div>
+          <div class="slider-row">
+            <label for="g">Green</label>
+            <input id="g" type="range" min="0" max="255" step="1" value="40" disabled />
+            <span id="g-val" class="val">40</span>
+          </div>
+          <div class="slider-row">
+            <label for="b">Blue</label>
+            <input id="b" type="range" min="0" max="255" step="1" value="60" disabled />
+            <span id="b-val" class="val">60</span>
+          </div>
+          <div class="slider-row">
+            <label for="intensity">Intensity</label>
+            <input id="intensity" type="range" min="0" max="255" step="1" value="200" disabled />
+            <span id="intensity-val" class="val">200</span>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <label class="hint" style="margin: 0">
+            <input id="live" type="checkbox" checked disabled />
+            Live (throttled <code>writeFrame</code>)
+          </label>
+          <button type="button" id="apply" class="btn btn-primary" disabled>Apply (acked)</button>
+          <button type="button" id="off" class="btn" disabled>Off</button>
+        </div>
+
+        <div class="status-box">
+          <h3>Last send</h3>
+          <pre id="ack" class="kv">—</pre>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

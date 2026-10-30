@@ -298,6 +298,37 @@ await board.writeAcked(MSG_LED_FX, encodeLedOff());
 
 ---
 
+### Wire — Wave (`wire/wave.ts`)
+
+| Constant       | Value  | Direction                          |
+| -------------- | ------ | ---------------------------------- |
+| `MSG_CMD_WAVE` | `0x83` | Host → board (R/G/B wave modules)  |
+
+#### Shapes — `WAVE_SHAPE`
+
+| Name       | Value |
+| ---------- | ----- |
+| `SIN`      | `0`   |
+| `SQUARE`   | `1`   |
+| `TRIANGLE` | `2`   |
+| `SAWTOOTH` | `3`   |
+
+| Function                    | Description                                      |
+| --------------------------- | ------------------------------------------------ |
+| `encodeWaveCmd(params)`     | Full `WaveCmd` protobuf                          |
+| `encodeWaveStop(channel?)`  | Disable channel (`255` = all)                    |
+| `encodeWaveColorWheel()`    | Three sine frames (boot-style RGB wheel)         |
+| `encodeWaveAll(shape, hz?)` | Same shape on channels `255`                     |
+
+```ts
+await board.writeAcked(MSG_CMD_WAVE, encodeWaveAll(WAVE_SHAPE.SQUARE, 0.6));
+for (const p of encodeWaveColorWheel()) {
+  await board.writeAcked(MSG_CMD_WAVE, p);
+}
+```
+
+---
+
 ### Wire — SFX (`wire/sfx.ts`)
 
 | Constant        | Value  | Direction                  |

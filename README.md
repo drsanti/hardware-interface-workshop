@@ -27,5 +27,23 @@ vp install
 vp dev          # http://localhost:5173/
 ```
 
-Flash a board first — see [`firmware-prebuilt/README.md`](firmware-prebuilt/README.md).
+Flash a board first (no ESP-IDF required) — preferred:
+
+```powershell
+cd firmware-prebuilt
+python -m pip install --user esptool
+.\rb config --port COMx --board es3c28p   # or ws28p
+.\rb flash-bin
+```
+
+```bash
+cd firmware-prebuilt
+python3 -m pip install --user esptool
+chmod +x rbdev/mac/rbdev rbdev/linux/rbdev rb 2>/dev/null || true
+./rb config --port /dev/cu.usbmodemXXXX --board es3c28p
+./rb flash-bin
+```
+
+Details: [`firmware-prebuilt/README.md`](firmware-prebuilt/README.md) ·
+[`firmware-prebuilt/rbdev/README.md`](firmware-prebuilt/rbdev/README.md).  
 Firmware source: [`../firmware-esp32-s3-dev`](../firmware-esp32-s3-dev).

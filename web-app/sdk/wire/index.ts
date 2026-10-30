@@ -37,3 +37,27 @@ export {
   UPLINK_ROUTE_ZENOH,
   encodeRouteCfg,
 } from "./route";
+export {
+  MSG_CMD_WAVE,
+  WAVE_SHAPE,
+  encodeWaveAll,
+  encodeWaveCmd,
+  encodeWaveColorWheel,
+  encodeWaveStop,
+  type WaveCmdParams,
+  type WaveShapeId,
+} from "./wave";
+export {
+  MSG_AUDIO_LEVEL,
+  MSG_MIC_CMD,
+  MSG_MIC_PCM,
+  VU_FLOOR_DB,
+  decodeAudioLevel,
+  decodeMicPcm,
+  encodeMicCmd,
+  levelToDb,
+  levelToPercent,
+  type AudioLevelView,
+  type MicCmdParams,
+  type MicPcmView,
+} from "./mic";

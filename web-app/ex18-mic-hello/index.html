@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex18 · Mic hello</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex18
+      </p>
+
+      <header class="hero">
+        <h1>Mic · hello</h1>
+        <p class="lede">
+          Enable the board mic with <code>MicCmd</code> (<code>0x86</code>), then
+          <strong>subscribe</strong> to <code>AudioLevel</code> (<code>0x23</code>) — board → host.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>SFX/LED were mostly host → board; mic adds a continuous uplink</li>
+          <li>Needs <code>CAP.MIC</code> — <strong>es3c28p</strong> only</li>
+          <li>Levels ~10 Hz while capture is on; USB or BLE both OK here</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="link-heading">
+        <h2 id="link-heading">Link</h2>
+        <p class="hint" id="hint">Connect notes are filled in by the script.</p>
+        <p id="banner" class="banner" hidden></p>
+        <div class="toolbar">
+          <button type="button" id="connect-serial" class="btn btn-primary">Connect USB</button>
+          <button type="button" id="connect-ble" class="btn btn-primary">Connect BLE</button>
+          <button type="button" id="disconnect" class="btn" disabled>Disconnect</button>
+        </div>
+        <div class="status-box">
+          <h3>Session</h3>
+          <pre id="status" class="kv">status=…</pre>
+        </div>
+        <div class="info-box">
+          <h3>BoardInfo</h3>
+          <pre id="info" class="kv">Connect to hear BoardInfo (0x28)…</pre>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="mic-heading">
+        <h2 id="mic-heading">Mic · <code>0x86</code> / <code>0x23</code></h2>
+        <div class="toolbar">
+          <button type="button" id="mic-on" class="btn btn-primary" disabled>Mic on</button>
+          <button type="button" id="mic-off" class="btn" disabled>Mic off</button>
+        </div>
+        <div class="status-box">
+          <h3>AudioLevel</h3>
+          <pre id="level" class="kv">Mic off — no levels yet.</pre>
+        </div>
+        <div class="status-box">
+          <h3>Last CmdAck</h3>
+          <pre id="ack" class="kv">—</pre>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

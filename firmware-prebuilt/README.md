@@ -52,7 +52,9 @@ Serial.
 
 ### Preferred: `rbdev flash-bin`
 
-The CLI ships in [`rbdev/`](rbdev/) (see [rbdev/README.md](rbdev/README.md)):
+The CLI ships in [`rbdev/`](rbdev/) for **Windows, macOS arm64, and Linux
+x64** (see [rbdev/README.md](rbdev/README.md)). Needs Python + `esptool`
+only — no ESP-IDF.
 
 ```powershell
 # once per PC
@@ -64,6 +66,15 @@ cd hardware-interface-workshop\firmware-prebuilt
 
 # or from workshop root:
 .\firmware-prebuilt\rb.cmd flash-bin --board ws28p -p COMx
+```
+
+```bash
+# macOS / Linux
+python3 -m pip install --user esptool
+cd hardware-interface-workshop/firmware-prebuilt
+chmod +x rbdev/mac/rbdev rbdev/linux/rbdev rb 2>/dev/null || true
+./rb config --port /dev/cu.usbmodemXXXX --board es3c28p
+./rb flash-bin
 ```
 
 `flash-bin` does **not** build firmware; it runs `esptool` against

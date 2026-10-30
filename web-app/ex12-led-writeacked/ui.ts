@@ -1,5 +1,5 @@
 /**
- * Page widgets only — no BoardSession / LED encode here.
+ * Page widgets only — no BoardSession / encode here.
  * Students: prefer reading main.ts.
  */
 
@@ -22,6 +22,8 @@ export const ui = {
   ledRed: requireEl("led-red", HTMLButtonElement),
   ledGreen: requireEl("led-green", HTMLButtonElement),
   ledBlink: requireEl("led-blink", HTMLButtonElement),
+  ledFade: requireEl("led-fade", HTMLButtonElement),
+  ledRainbow: requireEl("led-rainbow", HTMLButtonElement),
   ledOff: requireEl("led-off", HTMLButtonElement),
   swatch: requireEl("swatch", HTMLSpanElement),
   ack: requireEl("ack", HTMLPreElement),
@@ -55,6 +57,8 @@ export function setLedButtons(enabled: boolean): void {
   ui.ledRed.disabled = !enabled;
   ui.ledGreen.disabled = !enabled;
   ui.ledBlink.disabled = !enabled;
+  ui.ledFade.disabled = !enabled;
+  ui.ledRainbow.disabled = !enabled;
   ui.ledOff.disabled = !enabled;
 }
 

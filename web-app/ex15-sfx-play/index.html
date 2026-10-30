@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex15 · SFX play</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="crumb">
+        <a href="/">← Vanilla track</a>
+        · ex15
+      </p>
+
+      <header class="hero">
+        <h1>SFX · play / stop</h1>
+        <p class="lede">
+          Pick <strong>USB</strong> or <strong>Bluetooth</strong>, then trigger board presets with
+          <code>writeAcked(MSG_SFX_CMD, …)</code>.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="idea-heading">
+        <h2 id="idea-heading">Idea</h2>
+        <ul class="ideas">
+          <li>Same dual-transport <code>BoardSession</code> as the LED labs</li>
+          <li><code>SfxCmd</code> (<code>0x84</code>) — play a preset or stop (<code>255</code>)</li>
+          <li>Speaker works on <strong>es3c28p</strong> and <strong>ws28p</strong></li>
+          <li>Keep volume modest on a desk — next lab adds volume/loops</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="link-heading">
+        <h2 id="link-heading">Link</h2>
+        <p class="hint" id="hint">Connect notes are filled in by the script.</p>
+        <p id="banner" class="banner" hidden></p>
+        <div class="toolbar">
+          <button type="button" id="connect-serial" class="btn btn-primary">Connect USB</button>
+          <button type="button" id="connect-ble" class="btn btn-primary">Connect BLE</button>
+          <button type="button" id="disconnect" class="btn" disabled>Disconnect</button>
+        </div>
+        <div class="status-box">
+          <h3>Session</h3>
+          <pre id="status" class="kv">status=…</pre>
+        </div>
+        <div class="info-box">
+          <h3>BoardInfo</h3>
+          <pre id="info" class="kv">Connect to hear BoardInfo (0x28)…</pre>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="sfx-heading">
+        <h2 id="sfx-heading">Presets · <code>0x84</code></h2>
+        <p class="hint">Quiet default volume (25). Alarm may loop until Stop.</p>
+        <div class="toolbar">
+          <button type="button" id="sfx-chime" class="btn" disabled>Chime</button>
+          <button type="button" id="sfx-beep" class="btn" disabled>Beep</button>
+          <button type="button" id="sfx-alarm" class="btn" disabled>Alarm</button>
+          <button type="button" id="sfx-bird" class="btn" disabled>Bird</button>
+          <button type="button" id="sfx-stop" class="btn" disabled>Stop</button>
+        </div>
+        <div class="status-box">
+          <h3>Last CmdAck</h3>
+          <pre id="ack" class="kv">—</pre>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

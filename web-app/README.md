@@ -30,7 +30,12 @@ vp dev             # http://localhost:5174/
 | [http://localhost:5174/ex09-web-video-camera/](http://localhost:5174/ex09-web-video-camera/)   | Web video camera   |
 | [http://localhost:5174/ex10-web-serial/](http://localhost:5174/ex10-web-serial/)               | Web Serial         |
 | [http://localhost:5174/ex11-web-bluetooth/](http://localhost:5174/ex11-web-bluetooth/)         | Web Bluetooth      |
-| [http://localhost:5174/ex12-led-writeacked/](http://localhost:5174/ex12-led-writeacked/)       | LED writeAcked     |
+| [http://localhost:5174/ex12-led-writeacked/](http://localhost:5174/ex12-led-writeacked/)       | LED LedFx          |
+| [http://localhost:5174/ex13-wave-cmd/](http://localhost:5174/ex13-wave-cmd/)                   | LED WaveCmd        |
+| [http://localhost:5174/ex14-led-sliders/](http://localhost:5174/ex14-led-sliders/)             | LED sliders        |
+| [http://localhost:5174/ex15-sfx-play/](http://localhost:5174/ex15-sfx-play/)                   | SFX play           |
+| [http://localhost:5174/ex16-sfx-volume/](http://localhost:5174/ex16-sfx-volume/)               | SFX volume         |
+| [http://localhost:5174/ex17-sfx-params/](http://localhost:5174/ex17-sfx-params/)               | SFX params         |
 
 React demos: `cd ../demos` → `vp dev` → port **5173**.
 
@@ -51,6 +56,11 @@ React demos: `cd ../demos` → `vp dev` → port **5173**.
 | [`ex10-web-serial`](ex10-web-serial/)               | USB: `BoardSession.connectSerial` + BoardInfo       |
 | [`ex11-web-bluetooth`](ex11-web-bluetooth/)         | BLE: `BoardSession.connectBle` + BoardInfo          |
 | [`ex12-led-writeacked`](ex12-led-writeacked/)       | Serial *or* BLE: `writeAcked` + `LedFx`             |
+| [`ex13-wave-cmd`](ex13-wave-cmd/)                   | Serial *or* BLE: `writeAcked` + `WaveCmd`           |
+| [`ex14-led-sliders`](ex14-led-sliders/)             | Serial *or* BLE: RGB + intensity sliders            |
+| [`ex15-sfx-play`](ex15-sfx-play/)                   | Serial *or* BLE: `SfxCmd` play / stop               |
+| [`ex16-sfx-volume`](ex16-sfx-volume/)               | Serial *or* BLE: volume + loops on play             |
+| [`ex17-sfx-params`](ex17-sfx-params/)               | Serial *or* BLE: live `SfxParam` knobs              |
 
 Add the next lab as `exNN-…/index.html` + `styles.css` + `main.ts`, link it
 from [`index.html`](index.html), and add the HTML path to
@@ -76,4 +86,5 @@ See [`sdk/README.md`](sdk/README.md).
 
 ## Suggested next labs (not built yet)
 
-1. **ex13** — SFX play / stop via `writeAcked` (Serial or BLE)
+1. **ex18** — SFX melody upload (`SfxProg` `0x8d`) *(optional)*
+2. **ex19** — Mic enable + audio level

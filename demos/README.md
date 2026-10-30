@@ -31,6 +31,18 @@ Switch the active target in [`src/lib/workshop.ts`](src/lib/workshop.ts)
 | **es3c28p** (default) | [`../firmware-prebuilt/es3c28p/`](../firmware-prebuilt/es3c28p/) | RGB LED + mic            |
 | **ws28p**             | [`../firmware-prebuilt/ws28p/`](../firmware-prebuilt/ws28p/)     | IMU + RTC (no LED / mic) |
 
+Preferred (`rbdev flash-bin` — Win/mac/Linux binaries in
+[`../firmware-prebuilt/rbdev/`](../firmware-prebuilt/rbdev/)):
+
+```bash
+cd ../firmware-prebuilt
+python3 -m pip install --user esptool
+./rb config --port PORT --board es3c28p   # or ws28p
+./rb flash-bin
+```
+
+Or manual esptool:
+
 ```bash
 cd ../firmware-prebuilt/es3c28p   # or: ws28p
 python3 -m pip install --user esptool

@@ -1,10 +1,10 @@
 /**
- * LED lab — Serial *or* BLE; same frames.
+ * LED lab — Serial *or* BLE; LedFx only.
  *
- *   Connect USB  → board.connectSerial()
- *   Connect BLE  → board.connectBle()
- *   LED buttons  → writeAcked(MSG_LED_FX, encodeLed…)
+ *   Connect USB / BLE
+ *   LedFx 0x8e → off / solid / blink / fade / rainbow
  *
+ * Wave oscillators: ex13-wave-cmd.
  * UI markup: index.html · paint helpers: ui.ts
  */
 
@@ -17,7 +17,9 @@ import {
   boardHas,
   decodeBoardInfo,
   encodeLedBlink,
+  encodeLedFade,
   encodeLedOff,
+  encodeLedRainbow,
   encodeLedSolid,
   serialUnsupportedReason,
   type BoardInfoView,
@@ -42,7 +44,7 @@ let busy = false;
 let lastRgb: Rgb | null = null;
 
 setHint(
-  "Choose USB (settle ~2.5 s) or BLE (settle ~0.4 s). LED needs CAP.LED — use es3c28p.",
+  "USB (~2.5 s settle) or BLE (~0.4 s). LedFx needs CAP.LED — es3c28p. Waves → ex13.",
 );
 
 function canDriveLed(): boolean {
@@ -169,6 +171,15 @@ ui.ledGreen.addEventListener("click", () => {
 ui.ledBlink.addEventListener("click", () => {
   const rgb = { r: 40, g: 90, b: 255 };
   void sendLed("blink-blue", encodeLedBlink(rgb, 180, 180), rgb);
+});
+
+ui.ledFade.addEventListener("click", () => {
+  const rgb = { r: 180, g: 40, b: 220 };
+  void sendLed("fade-purple", encodeLedFade(rgb, 600, 600), rgb);
+});
+
+ui.ledRainbow.addEventListener("click", () => {
+  void sendLed("rainbow", encodeLedRainbow(1400), { r: 180, g: 120, b: 200 });
 });
 
 ui.ledOff.addEventListener("click", () => {

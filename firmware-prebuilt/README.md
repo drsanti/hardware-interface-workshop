@@ -27,7 +27,7 @@ need, then rebuild and replace the bins here.
 ```
 firmware-prebuilt/
   README.md
-  rb / rb.cmd / rb.ps1     # wrappers → rbdev/<os>/
+  rb / rb.cmd              # wrappers → rbdev/<os>/ (Windows: rb.cmd)
   rbdev/
     windows/rbdev.exe
     mac/rbdev

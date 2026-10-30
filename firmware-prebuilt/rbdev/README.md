@@ -2,7 +2,8 @@
 
 In-repo host CLI to **flash prebuilt board images**. Students do **not**
 build firmware here. Prefer the wrappers in the parent folder
-(`../rb`, `../rb.cmd`, `../rb.ps1`) so the OS binary is selected for you.
+(`../rb`, `../rb.cmd`) so the OS binary is selected for you.
+On Windows PowerShell use `.\rb` (resolves to `rb.cmd`).
 
 Full flash notes: [`../README.md`](../README.md) · workshop root:
 [`../../README.md`](../../README.md).

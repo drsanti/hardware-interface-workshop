@@ -3,7 +3,11 @@
 In-repo host CLI to **flash prebuilt board images**. Students do **not**
 build firmware here. Prefer the wrappers in the parent folder
 (`../rb`, `../rb.cmd`) so the OS binary is selected for you.
-On Windows PowerShell use `.\rb` (resolves to `rb.cmd`).
+On Windows PowerShell use `.\rb` (resolves to `rb.cmd`). Start each window with:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
 
 Full flash notes: [`../README.md`](../README.md) · workshop root:
 [`../../README.md`](../../README.md).
@@ -25,6 +29,9 @@ may need **right-click → Open** (Gatekeeper) until notarization.
 ## Flash prebuilt firmware
 
 ```powershell
+# Once per PowerShell window (avoids "not digitally signed"):
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 # once per PC
 python -m pip install --user esptool
 

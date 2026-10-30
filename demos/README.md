@@ -41,7 +41,17 @@ Switch the active target in [`src/lib/workshop.ts`](src/lib/workshop.ts)
 Preferred (`rbdev flash-bin` — Win/mac/Linux binaries in
 [`../firmware-prebuilt/rbdev/`](../firmware-prebuilt/rbdev/)):
 
+```powershell
+# Windows PowerShell — once per window:
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+cd ../firmware-prebuilt
+python -m pip install --user esptool
+.\rb config --port COMx --board es3c28p   # or ws28p
+.\rb flash-bin
+```
+
 ```bash
+# macOS / Linux
 cd ../firmware-prebuilt
 python3 -m pip install --user esptool
 ./rb config --port PORT --board es3c28p   # or ws28p

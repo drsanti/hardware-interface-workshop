@@ -64,6 +64,9 @@ x64** (see [rbdev/README.md](rbdev/README.md)). Needs Python + `esptool`
 only — no ESP-IDF.
 
 ```powershell
+# Once per PowerShell window (avoids "not digitally signed"):
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 # once per PC
 python -m pip install --user esptool
 

@@ -130,6 +130,9 @@ cd hardware-interface-workshop
 ### 1. Flash the board (once)
 
 ```powershell
+# Once per PowerShell window (avoids "not digitally signed"):
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 cd firmware-prebuilt
 python -m pip install --user esptool
 .\rb config --port COMx --board es3c28p   # or ws28p — YOUR port
@@ -187,6 +190,7 @@ Students flash **prebuilt bins** — no IDF project in this repo.
 | [`firmware-prebuilt/rbdev/README.md`](firmware-prebuilt/rbdev/README.md) | `rb` CLI — doctor, config, flash |
 
 ```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 cd firmware-prebuilt
 .\rb doctor
 .\rb config --port COMx --board es3c28p

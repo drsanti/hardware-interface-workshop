@@ -1,0 +1,793 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>@sdk board link library - Hardware Interface Workshop — Labs Ebook</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="Generated curriculum ebook from web-app and demos README labsheets. Markdown remains the source of truth.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../css/chrome-d279d366.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/ebook-bd0553b9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "light";
+            window.path_to_searchindex_js = "../searchindex-d491fcaa.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-5c12dd04.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Hardware Interface Workshop — Labs Ebook</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/drsanti/hardware-interface-workshop" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="sdk--board-link-library"><a class="header" href="#sdk--board-link-library"><code>@sdk</code> — board link library</a></h1>
+<div class="ebook-run">
+<p><strong>Reference:</strong> <code>@sdk</code> · <strong>Project:</strong> <code>web-app/sdk</code></p>
+<pre><code class="language-text">cd web-app
+vp install
+# import from "@sdk" in lab TypeScript
+</code></pre>
+<p class="ebook-source"><strong>Source:</strong> <code>web-app/sdk/README.md</code></p>
+
+</div>
+
+<p>Talk to Cronos boards from the browser over <strong>Web Serial</strong> (USB) or
+<strong>Web Bluetooth</strong>. Same COBS frames + protobuf payloads as the React
+<a href="../tracks/react.html"><code>demos/</code></a> labs and <a href="https://github.com/drsanti/firmware-esp32-s3-dev"><code>firmware-esp32-s3-dev</code></a>.</p>
+<p>Import path: <code>@sdk</code> (Vite alias → this folder). Entry: <a href="index.ts"><code>index.ts</code></a>.</p>
+<hr>
+<h2 id="install"><a class="header" href="#install">Install</a></h2>
+<pre><code class="language-bash">cd hardware-interface-workshop/web-app
+vp install   # pulls protobufjs
+</code></pre>
+<pre><code class="language-ts">import { BoardSession, MSG_BOARD_INFO, MSG_LED_FX, decodeBoardInfo, encodeLedSolid } from "@sdk";
+</code></pre>
+<p><strong>Requirements:</strong> Chrome or Edge · <code>localhost</code> or HTTPS · flashed
+<a href="../flash-firmware.html"><code>firmware-prebuilt/</code></a> image.</p>
+<hr>
+<h2 id="quick-start"><a class="header" href="#quick-start">Quick start</a></h2>
+<pre><code class="language-ts">const board = new BoardSession();
+
+board.onChange(() =&gt; {
+  console.log(board.status, board.ready, board.message);
+});
+
+board.subscribe((frame) =&gt; {
+  if (frame.msgType === MSG_BOARD_INFO) {
+    console.log(decodeBoardInfo(frame.payload));
+  }
+});
+
+// Must run from a click handler (user gesture).
+await board.connectSerial(); // or: board.connectBle()
+
+await board.writeAcked(MSG_LED_FX, encodeLedSolid({ r: 40, g: 180, b: 60 }));
+</code></pre>
+<hr>
+<h2 id="architecture"><a class="header" href="#architecture">Architecture</a></h2>
+<pre><code>┌──────────────┐     USB / BLE bytes     ┌──────────────┐
+│ BoardSession │ &lt;---------------------&gt; │    Board     │
+│  (browser)   │                         │  (firmware)  │
+└──────────────┘                         └──────────────┘
+</code></pre>
+<p>Under the session: <code>FrameDecoder</code> / <code>frameEncode</code> (COBS + CRC16),
+<code>wire/*</code> protobuf codecs, and <code>browser</code> / <code>ble</code> helpers.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Path</th><th>Role</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="session.ts"><code>session.ts</code></a></td><td><code>BoardSession</code> — connect, disconnect, frames, acked writes</td></tr>
+<tr><td><a href="browser.ts"><code>browser.ts</code></a></td><td>Secure context + Serial / Bluetooth capability checks</td></tr>
+<tr><td><a href="ble.ts"><code>ble.ts</code></a></td><td>GATT open / chunked writes</td></tr>
+<tr><td><a href="caps.ts"><code>caps.ts</code></a></td><td><code>CAP.*</code> feature bits from BoardInfo</td></tr>
+<tr><td><a href="wire/"><code>wire/</code></a></td><td>COBS, CRC, frame codec, BoardInfo / LedFx / SfxCmd</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Pipe</th><th>API</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>USB</td><td>Web Serial</td><td>Baud <code>921600</code>; settle <code>SERIAL_SETTLE_MS</code> (2500)</td></tr>
+<tr><td>BLE</td><td>Web Bluetooth</td><td>Service <code>726f626f-…0001</code>; write chunks of 20 bytes</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="api-reference"><a class="header" href="#api-reference">API reference</a></h2>
+<h3 id="browser-capability--browserts"><a class="header" href="#browser-capability--browserts">Browser capability — <code>browser.ts</code></a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Export</th><th>Signature</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>isSecureContext</code></td><td><code>() =&gt; boolean</code></td><td><code>window.isSecureContext</code></td></tr>
+<tr><td><code>hasWebSerial</code></td><td><code>() =&gt; boolean</code></td><td><code>"serial" in navigator</code></td></tr>
+<tr><td><code>hasWebBluetooth</code></td><td><code>() =&gt; boolean</code></td><td><code>"bluetooth" in navigator</code></td></tr>
+<tr><td><code>serialUnsupportedReason</code></td><td><code>() =&gt; string | null</code></td><td>Human reason, or <code>null</code> if Serial is usable</td></tr>
+<tr><td><code>bleUnsupportedReason</code></td><td><code>() =&gt; string | null</code></td><td>Human reason, or <code>null</code> if BLE is usable</td></tr>
+</tbody>
+</table>
+</div>
+<p>Use these before enabling Connect buttons (see <a href="../ex10-web-serial/">ex10</a>).</p>
+<hr>
+<h3 id="session--boardsession-sessionts"><a class="header" href="#session--boardsession-sessionts">Session — <code>BoardSession</code> (<code>session.ts</code>)</a></h3>
+<p>Framework-agnostic link. One instance per page is typical.</p>
+<h4 id="constants"><a class="header" href="#constants">Constants</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Value</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><code>SERIAL_BAUD</code></td><td><code>921_600</code></td><td>Baud passed to <code>port.open</code> (USB-JTAG often ignores it)</td></tr>
+<tr><td><code>SERIAL_SETTLE_MS</code></td><td><code>2500</code></td><td>Wait after USB open before <code>ready = true</code></td></tr>
+<tr><td><code>BLE_SETTLE_MS</code></td><td><code>400</code></td><td>Short pause after GATT notify setup</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="types"><a class="header" href="#types">Types</a></h4>
+<pre><code class="language-ts">type LinkStatus = "idle" | "picking" | "open" | "error";
+type LinkTransport = "serial" | "ble";
+type FrameHandler = (frame: DecodedFrame) =&gt; void;
+type SessionChangeHandler = () =&gt; void;
+</code></pre>
+<h4 id="fields-read-after-onchange"><a class="header" href="#fields-read-after-onchange">Fields (read after <code>onChange</code>)</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><code>status</code></td><td><code>LinkStatus</code></td><td>Connection state machine</td></tr>
+<tr><td><code>message</code></td><td><code>string | null</code></td><td>Human-readable status line</td></tr>
+<tr><td><code>transport</code></td><td><code>LinkTransport | null</code></td><td><code>"serial"</code> or <code>"ble"</code> when open</td></tr>
+<tr><td><code>ready</code></td><td><code>boolean</code></td><td><code>true</code> after settle — prefer waiting before commands</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="getters"><a class="header" href="#getters">Getters</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Getter</th><th>Type</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><code>serialSupported</code></td><td><code>boolean</code></td><td>Serial usable in this browser/context</td></tr>
+<tr><td><code>bleSupported</code></td><td><code>boolean</code></td><td>BLE usable</td></tr>
+<tr><td><code>supported</code></td><td><code>boolean</code></td><td>Either transport usable</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="methods"><a class="header" href="#methods">Methods</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Method</th><th>Signature</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>subscribe</code></td><td><code>(handler: FrameHandler) =&gt; () =&gt; void</code></td><td>Every decoded frame; returns unsubscribe</td></tr>
+<tr><td><code>onChange</code></td><td><code>(handler: SessionChangeHandler) =&gt; () =&gt; void</code></td><td>Status / ready / message; returns unsubscribe</td></tr>
+<tr><td><code>connect</code></td><td><code>() =&gt; Promise&lt;void&gt;</code></td><td>Alias of <code>connectSerial</code></td></tr>
+<tr><td><code>connectSerial</code></td><td><code>() =&gt; Promise&lt;void&gt;</code></td><td>Port picker + open; <strong>needs user gesture</strong></td></tr>
+<tr><td><code>connectBle</code></td><td><code>() =&gt; Promise&lt;void&gt;</code></td><td>Device picker + GATT; <strong>needs user gesture</strong></td></tr>
+<tr><td><code>disconnect</code></td><td><code>() =&gt; Promise&lt;void&gt;</code></td><td>Close port/GATT; <code>status → idle</code>, <code>ready → false</code></td></tr>
+<tr><td><code>writeFrame</code></td><td><code>(msgType, payload) =&gt; Promise&lt;number&gt;</code></td><td>Send one framed command; returns outbound <code>seq</code></td></tr>
+<tr><td><code>writeAcked</code></td><td><code>(msgType, payload, timeoutMs?) =&gt; Promise&lt;number&gt;</code></td><td><code>writeFrame</code> then wait for matching <code>CmdAck</code>; resolves to <code>rc</code></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong><code>writeAcked</code> details</strong></p>
+<ul>
+<li>Default timeout: <code>2500</code> ms.</li>
+<li>Matches inbound <code>MSG_CMD_ACK</code> (<code>0x27</code>) on <code>msgType</code> + <code>seq</code>.</li>
+<li>A newer <code>writeAcked</code> rejects any previous pending wait (<code>"Replaced by a newer command."</code>).</li>
+<li>Timeout rejects with a hint about serial-bridge firmware.</li>
+</ul>
+<p><strong>State sketch:</strong> <code>idle</code> → <code>picking</code> → <code>open</code> (then <code>ready=true</code> after settle);
+picker cancel returns to <code>idle</code>; <code>disconnect()</code> always returns to <code>idle</code>.</p>
+<hr>
+<h3 id="capabilities--capsts"><a class="header" href="#capabilities--capsts">Capabilities — <code>caps.ts</code></a></h3>
+<p>Bit flags from <code>BoardInfo.caps</code> / firmware <code>bsp_caps()</code>.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Export</th><th>Value / signature</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>CAP.LED</code></td><td><code>0x01</code></td><td>RGB LED</td></tr>
+<tr><td><code>CAP.MIC</code></td><td><code>0x02</code></td><td>Microphone</td></tr>
+<tr><td><code>CAP.IMU</code></td><td><code>0x04</code></td><td>Motion sensor</td></tr>
+<tr><td><code>CAP.RTC</code></td><td><code>0x08</code></td><td>Clock</td></tr>
+<tr><td><code>CAP.BATT</code></td><td><code>0x10</code></td><td>Battery</td></tr>
+<tr><td><code>CAP.BTN</code></td><td><code>0x20</code></td><td>Buttons</td></tr>
+<tr><td><code>CapId</code></td><td>type</td><td>Union of <code>CAP</code> values</td></tr>
+<tr><td><code>boardHas</code></td><td><code>(cap, caps) =&gt; boolean</code></td><td><code>(caps &amp; cap) !== 0</code></td></tr>
+<tr><td><code>featureLabels</code></td><td><code>(caps) =&gt; string[]</code></td><td>Human labels for set bits</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-ts">const info = decodeBoardInfo(frame.payload);
+if (boardHas(CAP.LED, info.caps)) {
+  await board.writeAcked(MSG_LED_FX, encodeLedSolid({ r: 0, g: 80, b: 0 }));
+}
+</code></pre>
+<hr>
+<h3 id="ble-helpers--blets"><a class="header" href="#ble-helpers--blets">BLE helpers — <code>ble.ts</code></a></h3>
+<p>Prefer <code>BoardSession.connectBle()</code> in apps. These are lower-level exports.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Export</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>BLE_SVC</code></td><td>GATT service UUID <code>726f626f-746f-5300-8000-000000000001</code></td></tr>
+<tr><td><code>BLE_RX</code></td><td>Host → board write characteristic (<code>…0002</code>)</td></tr>
+<tr><td><code>BLE_TX</code></td><td>Board → host notify characteristic (<code>…0003</code>)</td></tr>
+<tr><td><code>BLE_WRITE_CHUNK</code></td><td><code>20</code> — max payload per <code>writeValueWithResponse</code></td></tr>
+<tr><td><code>BleLink</code></td><td><code>{ device, rx, tx, name }</code></td></tr>
+<tr><td><code>openBleLink</code></td><td>Picker + discover + start notifications</td></tr>
+<tr><td><code>bleWrite</code></td><td>Chunked write of a full COBS frame onto <code>rx</code></td></tr>
+<tr><td><code>closeBleLink</code></td><td>Stop notifications + disconnect</td></tr>
+</tbody>
+</table>
+</div>
+<p>Device filters: service UUID, name prefix <code>rb-</code>, or <code>robotos</code>.</p>
+<hr>
+<h3 id="wire--frames-wireframets"><a class="header" href="#wire--frames-wireframets">Wire — frames (<code>wire/frame.ts</code>)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Export</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>MSG_BOARD_INFO</code></td><td><code>0x28</code> — board identity (MCU → host)</td></tr>
+<tr><td><code>DecodedFrame</code></td><td><code>{ msgType: number; seq: number; payload: Uint8Array }</code></td></tr>
+<tr><td><code>frameEncode</code></td><td><code>(msgType, seq, payload) =&gt; Uint8Array</code> — full on-wire bytes</td></tr>
+<tr><td><code>FrameDecoder</code></td><td>Streaming splitter; <code>feed(chunk) =&gt; DecodedFrame[]</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>On-wire layout (conceptual):</p>
+<pre><code>0x00 | COBS( msgType | seq_le16 | len_le16 | payload | crc16_le ) | 0x00
+</code></pre>
+<p>CRC: <strong>CRC-16/XMODEM</strong> (<code>poly 0x1021</code>, init <code>0</code>) — see <code>wire/crc16.ts</code>.
+COBS: <code>cobsEncode</code> / <code>cobsDecode</code> in <code>wire/cobs.ts</code> (delimiter is <code>0x00</code>).</p>
+<hr>
+<h3 id="wire--boardinfo-wireboardinfots"><a class="header" href="#wire--boardinfo-wireboardinfots">Wire — BoardInfo (<code>wire/boardInfo.ts</code>)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Export</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>BoardInfoView</code></td><td>Decoded identity fields (below)</td></tr>
+<tr><td><code>decodeBoardInfo</code></td><td><code>(payload: Uint8Array) =&gt; BoardInfoView</code></td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-ts">type BoardInfoView = {
+  uuid: string;
+  mac: string;
+  hwModel: string;
+  fwVersion: string;
+  caps: number; // bitfield — use CAP / boardHas / featureLabels
+  synced: boolean;
+  unixNs: number;
+  features: string[]; // from featureLabels(caps)
+};
+</code></pre>
+<hr>
+<h3 id="wire--led-wireledts"><a class="header" href="#wire--led-wireledts">Wire — LED (<code>wire/led.ts</code>)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Constant</th><th>Value</th><th>Direction</th></tr>
+</thead>
+<tbody>
+<tr><td><code>MSG_LED_FX</code></td><td><code>0x8e</code></td><td>Host → board (effect command)</td></tr>
+<tr><td><code>MSG_LED_STATE</code></td><td><code>0x21</code></td><td>Board → host (last color)</td></tr>
+<tr><td><code>MSG_CMD_ACK</code></td><td><code>0x27</code></td><td>Board → host (command result)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="effect-codes--led_fx"><a class="header" href="#effect-codes--led_fx">Effect codes — <code>LED_FX</code></a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>OFF</code></td><td><code>0</code></td></tr>
+<tr><td><code>SOLID</code></td><td><code>1</code></td></tr>
+<tr><td><code>BLINK</code></td><td><code>2</code></td></tr>
+<tr><td><code>FADE</code></td><td><code>3</code></td></tr>
+<tr><td><code>RAINBOW</code></td><td><code>4</code></td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="types-1"><a class="header" href="#types-1">Types</a></h4>
+<pre><code class="language-ts">type Rgb = { r: number; g: number; b: number }; // 0..255 (clamped)
+
+type LedFxParams = {
+  effect: LedFxEffect;
+  rgb?: Rgb;
+  n?: number;
+  delayMs?: number;
+  onMs?: number;
+  offMs?: number;
+  endMs?: number;
+  intensity?: number; // default 255
+};
+
+type CmdAckView = { msgType: number; reqSeq: number; rc: number };
+</code></pre>
+<h4 id="encoders--decoders"><a class="header" href="#encoders--decoders">Encoders / decoders</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Function</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>encodeLedFx(params)</code></td><td>Full <code>LedFx</code> protobuf</td></tr>
+<tr><td><code>encodeLedSolid(rgb)</code></td><td>Solid color</td></tr>
+<tr><td><code>encodeLedOff()</code></td><td>Lights off</td></tr>
+<tr><td><code>encodeLedBlink(rgb, onMs?, offMs?)</code></td><td>Defaults 200 / 200</td></tr>
+<tr><td><code>encodeLedFade(rgb, onMs?, offMs?)</code></td><td>Defaults 500 / 500</td></tr>
+<tr><td><code>encodeLedRainbow(periodMs?)</code></td><td>Default period 1200 ms</td></tr>
+<tr><td><code>decodeLedState(payload)</code></td><td>→ <code>Rgb</code></td></tr>
+<tr><td><code>decodeCmdAck(payload)</code></td><td>→ <code>CmdAckView</code></td></tr>
+<tr><td><code>LED_PRESETS</code></td><td><code>[{ id, label, rgb }, …]</code> red/green/blue/white</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-ts">await board.writeAcked(MSG_LED_FX, encodeLedSolid({ r: 255, g: 0, b: 0 }));
+await board.writeAcked(MSG_LED_FX, encodeLedBlink({ r: 0, g: 0, b: 255 }, 150, 150));
+await board.writeAcked(MSG_LED_FX, encodeLedOff());
+</code></pre>
+<hr>
+<h3 id="wire--wave-wirewavets"><a class="header" href="#wire--wave-wirewavets">Wire — Wave (<code>wire/wave.ts</code>)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Constant</th><th>Value</th><th>Direction</th></tr>
+</thead>
+<tbody>
+<tr><td><code>MSG_CMD_WAVE</code></td><td><code>0x83</code></td><td>Host → board (R/G/B wave modules)</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="shapes--wave_shape"><a class="header" href="#shapes--wave_shape">Shapes — <code>WAVE_SHAPE</code></a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>SIN</code></td><td><code>0</code></td></tr>
+<tr><td><code>SQUARE</code></td><td><code>1</code></td></tr>
+<tr><td><code>TRIANGLE</code></td><td><code>2</code></td></tr>
+<tr><td><code>SAWTOOTH</code></td><td><code>3</code></td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Function</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>encodeWaveCmd(params)</code></td><td>Full <code>WaveCmd</code> protobuf</td></tr>
+<tr><td><code>encodeWaveStop(channel?)</code></td><td>Disable channel (<code>255</code> = all)</td></tr>
+<tr><td><code>encodeWaveColorWheel()</code></td><td>Three sine frames (boot-style RGB wheel)</td></tr>
+<tr><td><code>encodeWaveAll(shape, hz?)</code></td><td>Same shape on channels <code>255</code></td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-ts">await board.writeAcked(MSG_CMD_WAVE, encodeWaveAll(WAVE_SHAPE.SQUARE, 0.6));
+for (const p of encodeWaveColorWheel()) {
+  await board.writeAcked(MSG_CMD_WAVE, p);
+}
+</code></pre>
+<hr>
+<h3 id="wire--sfx-wiresfxts"><a class="header" href="#wire--sfx-wiresfxts">Wire — SFX (<code>wire/sfx.ts</code>)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Constant</th><th>Value</th><th>Direction</th></tr>
+</thead>
+<tbody>
+<tr><td><code>MSG_SFX_CMD</code></td><td><code>0x84</code></td><td>Host → board play / stop</td></tr>
+<tr><td><code>MSG_SFX_PARAM</code></td><td><code>0x85</code></td><td>Host → board live DSP knob</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="presets--sfx_preset"><a class="header" href="#presets--sfx_preset">Presets — <code>SFX_PRESET</code></a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>CHIME</code></td><td><code>0</code></td></tr>
+<tr><td><code>ALARM</code></td><td><code>1</code></td></tr>
+<tr><td><code>BEEP</code></td><td><code>2</code></td></tr>
+<tr><td><code>USER</code></td><td><code>3</code></td></tr>
+<tr><td><code>BIRD</code></td><td><code>4</code></td></tr>
+<tr><td><code>BIRD_REV</code></td><td><code>5</code></td></tr>
+<tr><td><code>AMBULANCE</code></td><td><code>6</code></td></tr>
+<tr><td><code>FIRE</code></td><td><code>7</code></td></tr>
+<tr><td><code>POLICE</code></td><td><code>8</code></td></tr>
+<tr><td><code>ENGINE</code></td><td><code>9</code></td></tr>
+<tr><td><code>MOTOR</code></td><td><code>10</code></td></tr>
+<tr><td><code>STOP</code></td><td><code>255</code></td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-ts">type SfxPlayOpts = {
+  volume?: number; // 0 = leave board volume unchanged
+  loops?: number;
+  durS?: number;
+};
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Function</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>encodeSfxPlay(preset, opts?)</code></td><td>Play preset</td></tr>
+<tr><td><code>encodeSfxStop()</code></td><td>Stop (<code>preset = STOP</code>)</td></tr>
+<tr><td><code>encodeSfxParam(stage, field, value)</code></td><td>DSP knob; stage <code>0xFF</code> = master volume</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-ts">await board.writeAcked(MSG_SFX_CMD, encodeSfxPlay(SFX_PRESET.CHIME, { volume: 40 }));
+await board.writeAcked(MSG_SFX_CMD, encodeSfxStop());
+await board.writeAcked(MSG_SFX_PARAM, encodeSfxParam(0xff, 0, 40)); // master %
+</code></pre>
+<hr>
+<h3 id="wire--mic-wiremicts"><a class="header" href="#wire--mic-wiremicts">Wire — Mic (<code>wire/mic.ts</code>)</a></h3>
+<p>Needs <code>CAP.MIC</code> (<strong>es3c28p</strong>). Levels work on USB or BLE; <strong>PCM is USB-only</strong>.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Constant</th><th>Value</th><th>Direction</th></tr>
+</thead>
+<tbody>
+<tr><td><code>MSG_MIC_CMD</code></td><td><code>0x86</code></td><td>Host → board enable / gain / mute / stream</td></tr>
+<tr><td><code>MSG_AUDIO_LEVEL</code></td><td><code>0x23</code></td><td>Board → host ~10 Hz while mic on</td></tr>
+<tr><td><code>MSG_MIC_PCM</code></td><td><code>0x24</code></td><td>Board → host PCM chunks (<code>stream</code> on)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Function</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>encodeMicCmd(params)</code></td><td>Omit fields you do not want to change</td></tr>
+<tr><td><code>decodeAudioLevel(payload)</code></td><td><code>{ rms, peak, frames, clipped }</code></td></tr>
+<tr><td><code>decodeMicPcm(payload)</code></td><td><code>{ seq, samples: Int16Array }</code></td></tr>
+<tr><td><code>levelToPercent(amp, floorDb?)</code></td><td>Int16 amp → VU % (default floor −48 dBFS)</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-ts">await board.writeAcked(MSG_MIC_CMD, encodeMicCmd({ enable: true, gainPct: 70 }));
+await board.writeAcked(MSG_MIC_CMD, encodeMicCmd({ stream: true, enable: true })); // USB
+const pct = levelToPercent(level.rms);
+</code></pre>
+<hr>
+<h3 id="message-id-cheat-sheet"><a class="header" href="#message-id-cheat-sheet">Message ID cheat sheet</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>ID</th><th>Name</th><th>Direction</th><th>Codec</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0x21</code></td><td><code>MSG_LED_STATE</code></td><td>board → host</td><td><code>decodeLedState</code></td></tr>
+<tr><td><code>0x23</code></td><td><code>MSG_AUDIO_LEVEL</code></td><td>board → host</td><td><code>decodeAudioLevel</code></td></tr>
+<tr><td><code>0x24</code></td><td><code>MSG_MIC_PCM</code></td><td>board → host</td><td><code>decodeMicPcm</code> (USB)</td></tr>
+<tr><td><code>0x27</code></td><td><code>MSG_CMD_ACK</code></td><td>board → host</td><td><code>decodeCmdAck</code> (also used by <code>writeAcked</code>)</td></tr>
+<tr><td><code>0x28</code></td><td><code>MSG_BOARD_INFO</code></td><td>board → host</td><td><code>decodeBoardInfo</code></td></tr>
+<tr><td><code>0x84</code></td><td><code>MSG_SFX_CMD</code></td><td>host → board</td><td><code>encodeSfxPlay</code> / <code>encodeSfxStop</code></td></tr>
+<tr><td><code>0x85</code></td><td><code>MSG_SFX_PARAM</code></td><td>host → board</td><td><code>encodeSfxParam</code></td></tr>
+<tr><td><code>0x86</code></td><td><code>MSG_MIC_CMD</code></td><td>host → board</td><td><code>encodeMicCmd</code></td></tr>
+<tr><td><code>0x8e</code></td><td><code>MSG_LED_FX</code></td><td>host → board</td><td><code>encodeLed*</code></td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="patterns"><a class="header" href="#patterns">Patterns</a></h2>
+<h3 id="paint-ui-from-session-state"><a class="header" href="#paint-ui-from-session-state">Paint UI from session state</a></h3>
+<pre><code class="language-ts">const unsub = board.onChange(() =&gt; {
+  statusEl.textContent = `${board.status} ready=${board.ready}`;
+});
+// later: unsub();
+</code></pre>
+<h3 id="filter-inbound-frames"><a class="header" href="#filter-inbound-frames">Filter inbound frames</a></h3>
+<pre><code class="language-ts">board.subscribe((frame) =&gt; {
+  switch (frame.msgType) {
+    case MSG_BOARD_INFO:
+      setInfo(decodeBoardInfo(frame.payload));
+      break;
+    case MSG_LED_STATE:
+      setRgb(decodeLedState(frame.payload));
+      break;
+    default:
+      break;
+  }
+});
+</code></pre>
+<h3 id="wait-for-ready-before-commands"><a class="header" href="#wait-for-ready-before-commands">Wait for ready before commands</a></h3>
+<pre><code class="language-ts">await board.connectSerial();
+await new Promise&lt;void&gt;((resolve) =&gt; {
+  if (board.ready) {
+    resolve();
+    return;
+  }
+  const off = board.onChange(() =&gt; {
+    if (board.ready) {
+      off();
+      resolve();
+    }
+  });
+});
+await board.writeAcked(MSG_LED_FX, encodeLedSolid({ r: 0, g: 120, b: 40 }));
+</code></pre>
+<hr>
+<h2 id="errors-and-pitfalls"><a class="header" href="#errors-and-pitfalls">Errors and pitfalls</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Situation</th><th>What happens</th></tr>
+</thead>
+<tbody>
+<tr><td>Insecure origin / no Serial</td><td><code>serialUnsupportedReason()</code> string; <code>connectSerial</code> sets <code>status: "error"</code></td></tr>
+<tr><td>Picker cancelled</td><td><code>NotFoundError</code> → <code>status: "idle"</code>, calm message</td></tr>
+<tr><td><code>writeFrame</code> with no link</td><td>Throws <code>"No link open."</code></td></tr>
+<tr><td>Ack timeout</td><td><code>writeAcked</code> rejects after <code>timeoutMs</code></td></tr>
+<tr><td>Overlapping <code>writeAcked</code></td><td>Previous promise rejects <code>"Replaced by a newer command."</code></td></tr>
+<tr><td>Call connect outside a click</td><td>Browser may block <code>requestPort</code> / <code>requestDevice</code></td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="extending-codecs"><a class="header" href="#extending-codecs">Extending codecs</a></h2>
+<p>Mic, key, battery, and IMU payloads can be added under <code>wire/</code> the same way as
+<a href="wire/led.ts"><code>led.ts</code></a> / <a href="wire/sfx.ts"><code>sfx.ts</code></a>. Mirror
+<a href="../../demos/src/lib/wire/"><code>demos/src/lib/wire/</code></a>, export from
+<a href="wire/index.ts"><code>wire/index.ts</code></a>, and they re-export via <code>@sdk</code>.</p>
+<hr>
+<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<ul>
+<li>Lab: <a href="../ex10-web-serial/">ex10 — Web Serial</a></li>
+<li>Flash images: <a href="../flash-firmware.html"><code>firmware-prebuilt/</code></a></li>
+<li>React demos (same wire): <a href="../tracks/react.html"><code>demos/</code></a></li>
+<li>Firmware source: <a href="https://github.com/drsanti/firmware-esp32-s3-dev"><code>firmware-esp32-s3-dev</code></a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../generated/vanilla/ex20-mic-wave/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../tracks/react.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../generated/vanilla/ex20-mic-wave/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../tracks/react.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-09f2665d.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/mermaid-581ed7d7.min.js"></script>
+        <script src="../theme/ebook-50eb2d88.js"></script>
+        <script src="../theme/force-light-46287557.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

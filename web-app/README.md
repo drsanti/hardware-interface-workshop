@@ -7,6 +7,10 @@ This folder is its **own Vite+ project**. Run `vp` from here.
 
 Sibling: [`../demos/`](../demos/) (React board labs on port 5173).
 
+**HTML ebook (both tracks, generated from labsheets):**
+[`../ebook/book/index.html`](../ebook/book/index.html) — rebuild with
+`pwsh -File .\ebook\scripts\build.ps1` from the workshop root.
+
 ---
 
 ## Overview

@@ -10,6 +10,9 @@ after the vanilla track. Same board wire as
 | [`../web-app/`](../web-app/) | Beginner HTML / CSS / TS + `@sdk` | **5174** |
 | [`../firmware-prebuilt/`](../firmware-prebuilt/) | Flashable images (`es3c28p`, `ws28p`) | — |
 | [Root README](../README.md) | Workshop overview + quick start | — |
+| [`../ebook/book/`](../ebook/book/index.html) | HTML labs ebook (vanilla + React) | — |
+
+Rebuild ebook: `pwsh -File .\ebook\scripts\build.ps1` from the workshop root.
 
 ---
 

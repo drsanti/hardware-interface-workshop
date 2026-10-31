@@ -129,10 +129,10 @@ sequenceDiagram
 
   User->>Browser: open localhost:5174/ex00-hello/
   Browser->>HTML: fetch and parse
-  HTML-->>Browser: DOM tree (h1, span#count, button#bump)
+  HTML-->>Browser: DOM tree (h1, span id=count, button id=bump)
   Browser->>CSS: fetch stylesheet
   CSS-->>Browser: rules (colors, layout)
-  Browser->>TS: fetch module (compiled by Vite+)
+  Browser->>TS: fetch module (compiled by Vite)
   TS->>Browser: getElementById count and bump
   TS->>Browser: addEventListener click on bump
   User->>Browser: click Click me
@@ -145,9 +145,9 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-  A[Module starts] --> B[Look up #count and #bump]
+  A[Module starts] --> B["Look up id=count and id=bump"]
   B --> C{Both found and correct types?}
-  C -- no --> D[throw Error: page is broken]
+  C -- no --> D["throw Error: page is broken"]
   C -- yes --> E[clicks = 0]
   E --> F[Attach click listener to bump]
   F --> G[Wait for events]

@@ -15,3 +15,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Labs ebook: Mermaid is downloaded by ebook/scripts/build.ps1 (hashed copy lands in book/)
+ebook/theme/mermaid.min.js
+

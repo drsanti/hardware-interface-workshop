@@ -1,0 +1,25 @@
+[book]
+title = "Hardware Interface Workshop — Labs Ebook"
+description = "Generated curriculum ebook from web-app and demos README labsheets. Markdown remains the source of truth."
+authors = ["robotos workshop"]
+language = "en"
+src = "src"
+
+[build]
+build-dir = "book"
+create-missing = false
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "light"
+git-repository-url = "https://github.com/drsanti/hardware-interface-workshop"
+additional-css = ["theme/ebook.css"]
+additional-js = ["theme/mermaid.min.js", "theme/ebook.js", "theme/force-light.js"]
+no-section-label = false
+
+[output.html.fold]
+enable = true
+level = 1
+
+[output.html.print]
+enable = true

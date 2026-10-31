@@ -61,7 +61,7 @@ Two Vite+ projects share one flashable image tree under
   (`demos`)
 - **Shared wire codecs** — COBS + protobuf; vanilla `@sdk` mirrors demos
 - **Web Serial + Web Bluetooth** — same board messages over USB or BLE
-- **No ESP-IDF for students** — flash with in-repo `rb` + `esptool`
+- **No ESP-IDF for students** — flash with in-repo `rbdev flash-bin` (+ `esptool`)
 - **Two boards** — Ternion **es3c28p** (LED + mic) and Waveshare **ws28p**
   (IMU + RTC)
 - **Capability gating** — labs use `CAP.*` / `boardHas()`; never assume hardware
@@ -285,13 +285,16 @@ ex00 Overview → ex02–03 link → ex04–05 LED → ex06–10 SFX
 
 | Doc | Audience |
 |-----|----------|
+| [`ebook/book/`](ebook/book/index.html) | HTML labs ebook — both tracks + `@sdk` (generated from README labsheets) |
 | [`web-app/README.md`](web-app/README.md) | Vanilla hub, exercise list, conventions |
 | [`web-app/sdk/README.md`](web-app/sdk/README.md) | `BoardSession`, wire codecs, message IDs |
 | [`demos/README.md`](demos/README.md) | React stack, board matrix, lab index |
 | [`firmware-prebuilt/README.md`](firmware-prebuilt/README.md) | Flash bins + ports |
-| [`firmware-prebuilt/rbdev/README.md`](firmware-prebuilt/rbdev/README.md) | Student flash CLI |
+| [`firmware-prebuilt/rbdev/README.md`](firmware-prebuilt/rbdev/README.md) | Student flash CLI (`flash-bin`) |
+| Sibling [`firmware-esp32-s3-workshop/rbdev-gui`](https://github.com/drsanti/firmware-esp32-s3-workshop/tree/main/rbdev-gui) | Optional Windows GUI for IDF labs (not used here) |
 
 Each lab folder also has its own **README.md** (goal, checklist, pitfalls).
+Rebuild the ebook: `pwsh -File .\ebook\scripts\build.ps1`.
 
 ---
 

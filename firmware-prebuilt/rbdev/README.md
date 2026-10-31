@@ -12,6 +12,10 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 Full flash notes: [`../README.md`](../README.md) · workshop root:
 [`../../README.md`](../../README.md).
 
+For **build / flash / FreeRTOS labs** (IDF), use the sibling firmware
+workshop — including optional Windows GUI under
+`firmware-esp32-s3-workshop/rbdev-gui/`. This folder is **flash-bin only**.
+
 Binaries ship under `windows|mac|linux/` in **this folder** (all three OS
 are in the git clone):
 

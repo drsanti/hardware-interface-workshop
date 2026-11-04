@@ -45,7 +45,7 @@ track; Blink / Fade use your mix; Rainbow runs a hue cycle; Off stops it.
 
 ## 2. Before you start
 
-1. Flash `firmware-prebuilt/es3c28p/` (`robotos_serial_bridge`).
+1. Flash `firmware-prebuilt/es3c28p/` (`robotos_board`).
 2. Set `WORKSHOP_BOARD_ID` to `es3c28p` in
    [`src/lib/workshop.ts`](../../../../demos/src/lib/workshop.ts).
 3. Finish [ex04](../../generated/react/ex04-rgb-led/index.md) first (simple solid presets).

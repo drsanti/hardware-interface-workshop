@@ -43,7 +43,7 @@ physical LED change **and stay** that color; Off turns it dark.
 
 **Note:** On boot the board runs a color-wheel animation (looks like a
 rainbow). A host LED command stops that animation so your color sticks.
-Flash `robotos_serial_bridge` for `es3c28p` (not an rtos-labs image).
+Flash `robotos_board` for `es3c28p` (not an rtos-labs image).
 
 ---
 

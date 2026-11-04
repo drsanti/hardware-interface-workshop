@@ -37,7 +37,7 @@ play ack.
 
 ## 3. Before you start
 
-1. Flash matching `firmware-prebuilt/<board>/` (`robotos_serial_bridge`).
+1. Flash matching `firmware-prebuilt/<board>/` (`robotos_board`).
 2. Set `WORKSHOP_BOARD_ID` in [`workshop.ts`](../../lib/workshop.ts).
 3. Chrome/Edge on localhost; quit other serial apps.
 

@@ -3,9 +3,9 @@
 Flashable board images for the
 [hardware-interface-workshop](../README.md) — **no ESP-IDF required** for
 students. Built from
-[`firmware-esp32-s3-dev/esp32s3`](../../firmware-esp32-s3-dev/esp32s3)
-(app target `robotos_serial_bridge` — binary name only; this workshop does
-**not** use the `robotos` host SDK).
+[`firmware-esp32-s3-dev/apps/robotos_board`](../../firmware-esp32-s3-dev/apps/robotos_board)
+(IDF project / image `robotos_board`). This workshop does **not** use the
+`robotos` host SDK.
 
 | Folder                 | `-DBOARD=` | Caps focus                                    |
 | ---------------------- | ---------- | --------------------------------------------- |
@@ -35,7 +35,7 @@ firmware-prebuilt/
   es3c28p/
     bootloader.bin
     partition-table.bin
-    robotos_serial_bridge.bin
+    robotos_board.bin
     flash_args
     flasher_args.json
   ws28p/
@@ -119,7 +119,7 @@ python3 -m esptool --chip esp32s3 -p PORT -b 460800 \
   write-flash --flash-mode dio --flash-size 2MB --flash-freq 80m \
   0x0 bootloader.bin \
   0x8000 partition-table.bin \
-  0x10000 robotos_serial_bridge.bin
+  0x10000 robotos_board.bin
 ```
 
 ## Flash / rebuild with ESP-IDF (instructors / contributors)
@@ -182,11 +182,11 @@ cd ../firmware-esp32-s3-dev
 That updates `es3c28p/` **and** `ws28p/` (bins + flat `flash_args`).
 See [`firmware-esp32-s3-dev/AGENTS.md`](../../firmware-esp32-s3-dev/AGENTS.md).
 
-| Build output                          | → prebuilt folder           |
-| ------------------------------------- | --------------------------- |
-| `bootloader/bootloader.bin`           | `bootloader.bin`            |
-| `partition_table/partition-table.bin` | `partition-table.bin`       |
-| `robotos_serial_bridge.bin`           | `robotos_serial_bridge.bin` |
+| Build output (`apps/robotos_board`)   | → prebuilt folder     |
+| ------------------------------------- | --------------------- |
+| `bootloader/bootloader.bin`           | `bootloader.bin`      |
+| `partition_table/partition-table.bin` | `partition-table.bin` |
+| `robotos_board.bin`                   | `robotos_board.bin`   |
 
 **Note:** one CMake `build/` tree holds only the last `-DBOARD=` image — the
 script reconfigures + builds each SKU before copying.

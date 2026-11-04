@@ -8,7 +8,7 @@
   "flash_files": {
     "0x0": "bootloader.bin",
     "0x8000": "partition-table.bin",
-    "0x10000": "robotos_serial_bridge.bin"
+    "0x10000": "robotos_board.bin"
   },
   "bootloader": { "offset": "0x0", "file": "bootloader.bin", "encrypted": "false" },
   "partition-table": {
@@ -16,7 +16,7 @@
     "file": "partition-table.bin",
     "encrypted": "false"
   },
-  "app": { "offset": "0x10000", "file": "robotos_serial_bridge.bin", "encrypted": "false" },
+  "app": { "offset": "0x10000", "file": "robotos_board.bin", "encrypted": "false" },
   "extra_esptool_args": {
     "after": "hard-reset",
     "before": "default-reset",
